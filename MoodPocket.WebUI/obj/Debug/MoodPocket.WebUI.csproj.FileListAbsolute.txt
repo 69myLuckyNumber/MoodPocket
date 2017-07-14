@@ -65,3 +65,11 @@ D:\C#\Projects\Git\MoodPocket\MoodPocket.WebUI\bin\Microsoft.AI.Web.xml
 D:\C#\Projects\Git\MoodPocket\MoodPocket.WebUI\obj\Debug\MoodPocket.WebUI.csprojResolveAssemblyReference.cache
 D:\C#\Projects\Git\MoodPocket\MoodPocket.WebUI\obj\Debug\MoodPocket.WebUI.dll
 D:\C#\Projects\Git\MoodPocket\MoodPocket.WebUI\obj\Debug\MoodPocket.WebUI.pdb
+D:\C#\Projects\Git\MoodPocket\MoodPocket.WebUI\bin\EntityFramework.dll
+D:\C#\Projects\Git\MoodPocket\MoodPocket.WebUI\bin\EntityFramework.SqlServer.dll
+D:\C#\Projects\Git\MoodPocket\MoodPocket.WebUI\bin\Imgur.API.dll
+D:\C#\Projects\Git\MoodPocket\MoodPocket.WebUI\bin\Ninject.dll
+D:\C#\Projects\Git\MoodPocket\MoodPocket.WebUI\bin\EntityFramework.xml
+D:\C#\Projects\Git\MoodPocket\MoodPocket.WebUI\bin\EntityFramework.SqlServer.xml
+D:\C#\Projects\Git\MoodPocket\MoodPocket.WebUI\bin\Imgur.API.xml
+D:\C#\Projects\Git\MoodPocket\MoodPocket.WebUI\bin\Ninject.xml
