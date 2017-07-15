@@ -73,3 +73,6 @@ D:\C#\Projects\Git\MoodPocket\MoodPocket.WebUI\bin\EntityFramework.xml
 D:\C#\Projects\Git\MoodPocket\MoodPocket.WebUI\bin\EntityFramework.SqlServer.xml
 D:\C#\Projects\Git\MoodPocket\MoodPocket.WebUI\bin\Imgur.API.xml
 D:\C#\Projects\Git\MoodPocket\MoodPocket.WebUI\bin\Ninject.xml
+D:\C#\Projects\Git\MoodPocket\MoodPocket.WebUI\bin\MoodPocket.Domain.dll
+D:\C#\Projects\Git\MoodPocket\MoodPocket.WebUI\bin\MoodPocket.Domain.pdb
+D:\C#\Projects\Git\MoodPocket\MoodPocket.WebUI\bin\MoodPocket.Domain.dll.config
