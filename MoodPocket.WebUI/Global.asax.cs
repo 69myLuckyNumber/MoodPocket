@@ -1,5 +1,7 @@
 ﻿using MoodPocket.Domain.Context;
 using MoodPocket.WebUI.App_Start;
+using MoodPocket.WebUI.Infrastructure;
+
 
 using System.Data.Entity;
 using System.Web.Mvc;
@@ -19,6 +21,7 @@ namespace MoodPocket.WebUI
 			RouteConfig.RegisterRoutes(RouteTable.Routes);
 			BundleConfig.RegisterBundles(BundleTable.Bundles);
 
+			ControllerBuilder.Current.SetControllerFactory(new NinjectConrollerFactory());
 			ImgurClientConfig.Init();
 		}
 	}
