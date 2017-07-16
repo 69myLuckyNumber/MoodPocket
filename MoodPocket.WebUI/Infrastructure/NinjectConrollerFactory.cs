@@ -1,4 +1,7 @@
-﻿using System;
+﻿using MoodPocket.Domain.Abstract;
+using MoodPocket.Domain.Concrete;
+
+using System;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Ninject;
@@ -22,7 +25,7 @@ namespace MoodPocket.WebUI.Infrastructure
 
 		private void AddBindings()
 		{
-			throw new NotImplementedException();
+			ninjectKernel.Bind<IUserRepository>().To<UserRepository>();
 		}
 	}
 }
