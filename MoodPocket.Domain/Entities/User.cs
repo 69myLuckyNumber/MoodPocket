@@ -19,5 +19,7 @@ namespace MoodPocket.Domain.Entities
 		public string ConfirmPassword { get; set; }
 
 		public string Salt { get; set; }
+
+		public bool IsVerified { get; set; }
 	}
 }

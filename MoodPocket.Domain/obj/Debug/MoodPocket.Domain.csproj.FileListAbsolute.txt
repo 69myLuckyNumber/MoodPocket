@@ -11,3 +11,4 @@ D:\C#\Projects\Git\MoodPocket\MoodPocket.Domain\obj\Debug\MoodPocket.Domain.cspr
 D:\C#\Projects\Git\MoodPocket\MoodPocket.Domain\obj\Debug\MoodPocket.Domain.Migrations.InitialCreate.resources
 D:\C#\Projects\Git\MoodPocket\MoodPocket.Domain\obj\Debug\MoodPocket.Domain.csproj.GenerateResource.Cache
 D:\C#\Projects\Git\MoodPocket\MoodPocket.Domain\obj\Debug\MoodPocket.Domain.Migrations.AddSaltProperty.resources
+D:\C#\Projects\Git\MoodPocket\MoodPocket.Domain\obj\Debug\MoodPocket.Domain.Migrations.AddIsVerifiedProp.resources

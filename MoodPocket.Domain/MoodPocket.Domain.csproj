@@ -60,6 +60,10 @@
     <Compile Include="Migrations\201707161247587_AddSaltProperty.Designer.cs">
       <DependentUpon>201707161247587_AddSaltProperty.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707181602011_AddIsVerifiedProp.cs" />
+    <Compile Include="Migrations\201707181602011_AddIsVerifiedProp.Designer.cs">
+      <DependentUpon>201707181602011_AddIsVerifiedProp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -73,6 +77,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707161247587_AddSaltProperty.resx">
       <DependentUpon>201707161247587_AddSaltProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707181602011_AddIsVerifiedProp.resx">
+      <DependentUpon>201707181602011_AddIsVerifiedProp.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

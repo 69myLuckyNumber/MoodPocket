@@ -42,6 +42,7 @@ namespace MoodPocket.WebUI.Controllers
 					Password = hashedPassword,
 					ConfirmPassword = hashedPassword,
 					Email = account.Email,
+					IsVerified = false,
 				});
 				userRepository.Complete();
 				return RedirectToAction("Index", "Home");
@@ -56,6 +57,7 @@ namespace MoodPocket.WebUI.Controllers
 			return Json(user == null);
 		}
 		
+
 
     }
 }
