@@ -11,7 +11,13 @@ namespace MoodPocket.Domain.Abstract
 	{
 		IQueryable<User> Users { get; }
 
-		void CreateUserAndSave(User user);
+		User Get(int id);
+
+		User Filter(string name, string email);
+
+		void CreateUser(User user);
+
+		void Complete();
 
 	}
 }

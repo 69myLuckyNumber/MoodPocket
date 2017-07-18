@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using MoodPocket.Domain.Entities;
+using System.Web.Mvc;
 
 namespace MoodPocket.WebUI.Models
 {
@@ -7,11 +7,14 @@ namespace MoodPocket.WebUI.Models
 	{
 		[Required(ErrorMessage ="Username is required")]
 		[Display(Name = "Username")]
+		[RegularExpression(@"(\S)+", ErrorMessage = "White space is not allowed")]
+		[Remote("DoesUserExists", "Account", HttpMethod = "POST", ErrorMessage = "Username already exists")]
 		[StringLength(24, MinimumLength = 3, ErrorMessage = "Username must be from 3 to 24 characters long")]
 		public string Username { get; set; }
 
 		[Required(ErrorMessage = "Email is required")]
 		[EmailAddress(ErrorMessage = "Invalid Email Address")]
+		[Remote("DoesUserExists", "Account", HttpMethod = "POST", ErrorMessage = "Username already exists")]
 		[Display(Name = "Email address")]
 		public string Email { get; set; }
 
@@ -21,7 +24,7 @@ namespace MoodPocket.WebUI.Models
 		[DataType(DataType.Password)]
 		public string Password { get; set; }
 
-		[Compare("Password", ErrorMessage = "Confirm your password")]
+		[System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "Confirm your password")]
 		[DataType(DataType.Password)]
 		[Display(Name = "Password again")]
 		public string ConfirmPassword { get; set; }

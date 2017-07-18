@@ -11,8 +11,8 @@ using System.Web.Mvc;
 
 namespace MoodPocket.WebUI.Controllers
 {
-    public class AccountController : Controller
-    {
+	public class AccountController : Controller
+	{
 		private IUserRepository userRepository;
 
 		public AccountController(IUserRepository repo)
@@ -21,10 +21,10 @@ namespace MoodPocket.WebUI.Controllers
 		}
 
 		[HttpGet]
-        public ActionResult Register()
-        {
-            return View();
-        }
+		public ActionResult Register()
+		{
+			return View();
+		}
 
 		[HttpPost]
 		[AllowAnonymous]
@@ -35,7 +35,7 @@ namespace MoodPocket.WebUI.Controllers
 			{
 				string salt = PasswordHelperUtility.GetRandomSalt();
 				string hashedPassword = PasswordHelperUtility.HashPassword(account.Password, salt);
-				userRepository.CreateUserAndSave(new User()
+				userRepository.CreateUser(new User()
 				{
 					Username = account.Username,
 					Salt = salt,
@@ -43,11 +43,19 @@ namespace MoodPocket.WebUI.Controllers
 					ConfirmPassword = hashedPassword,
 					Email = account.Email,
 				});
+				userRepository.Complete();
 				return RedirectToAction("Index", "Home");
 			}
 			return View(account);
 		}
-	
+
+		[HttpPost]
+		public JsonResult DoesUserExists(string Username, string Email)
+		{
+			User user = userRepository.Filter(Username, Email);
+			return Json(user == null);
+		}
+		
 
     }
 }
