@@ -1,0 +1,23 @@
+﻿@model MoodPocket.WebUI.Models.LoginModel
+@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { id = "login-form" }))
+{
+    @Html.AntiForgeryToken()
+    <h2>LOGIN</h2>
+    <div class="form-group">
+        @Html.TextBoxFor(model => model.Username, new { @class = "form-control", @placeholder = "Username", @tabindex = "1", value = "", id = "username" })
+        @Html.ValidationMessageFor(model => model.Username, "", new { @style = "color: #ef9a9a" })
+    </div>
+    <div class="form-group">
+        @Html.TextBoxFor(model => model.Password, new { @class = "form-control", @placeholder = "Password", tabindex = "2" })
+        @Html.ValidationMessageFor(model => model.Password, "", new { @style = "color: #ef9a9a" })
+    </div>
+    <div class="col-xs-6 form-group pull-left checkbox">
+        <input data-val="true" data-val-required="The Remember Me? field is required." id="RememberMe" name="RememberMe" type="checkbox" value="true">
+        <label for="RememberMe">Remember Me?</label>
+        <input name="RememberMe" type="hidden" value="false">
+    </div>
+    @Html.ValidationSummary()
+    <div class="col-xs-6 form-group pull-right">
+        <input type = "submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
+    </div>
+}

@@ -1,3 +1,20 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+@section links{
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+}
+
+<div class="container">
+    <div class="row">
+        @if (User.Identity.IsAuthenticated)
+        {
+            @Html.RouteLink("Sign out", new { controller = "Account", action = "LogOut" })
+        }
+        else
+        {
+            @Html.RouteLink("Sign in/Sign up", new { controller = "Account", action = "Entry" })
+        }
+        
+    </div>
+</div>

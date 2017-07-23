@@ -13,7 +13,7 @@ namespace MoodPocket.Domain.Abstract
 
 		User Get(int id);
 
-		User Filter(string name, string email);
+		User Filter(string name = null, string email = null);
 
 		void CreateUser(User user);
 

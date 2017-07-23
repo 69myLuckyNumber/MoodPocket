@@ -3,6 +3,13 @@ using System.Web.Mvc;
 
 namespace MoodPocket.WebUI.Models
 {
+
+	public class RegLogViewModel
+	{
+		public RegisterModel Register { get; set; }
+
+		public LoginModel Login { get; set; }
+	}
 	public class RegisterModel
 	{
 		[Required(ErrorMessage ="Username is required")]
@@ -28,6 +35,17 @@ namespace MoodPocket.WebUI.Models
 		[DataType(DataType.Password)]
 		[Display(Name = "Password again")]
 		public string ConfirmPassword { get; set; }
+	}
 
+	public class LoginModel
+	{
+		[Required(ErrorMessage = "Username is required")]
+		public string Username { get; set; }
+
+		[Required(ErrorMessage = "Password is required")]
+		public string Password { get; set; }
+
+		[Display(Name = "Remember Me?")]
+		public bool RememberMe { get; set; }
 	}
 }

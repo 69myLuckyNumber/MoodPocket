@@ -2,12 +2,12 @@
 using MoodPocket.Domain.Entities;
 using MoodPocket.WebUI.Models;
 using MoodPocket.WebUI.Utilities;
+using MoodPocket.WebUI.Filters;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
+using System.Net;
+using System.Linq;
 
 namespace MoodPocket.WebUI.Controllers
 {
@@ -21,15 +21,22 @@ namespace MoodPocket.WebUI.Controllers
 		}
 
 		[HttpGet]
-		public ActionResult Register()
+		[OnlyAnonymous]
+		public ViewResult Entry()
 		{
-			return View();
+			RegLogViewModel model = new RegLogViewModel()
+			{
+				Register = new RegisterModel(),
+				Login = new LoginModel()
+			};
+			return View(model);
 		}
 
 		[HttpPost]
-		[AllowAnonymous]
+		[ValidateAjax]
+		[OnlyAnonymous]
 		[ValidateAntiForgeryToken]
-		public ActionResult Register(RegisterModel account)
+		public JsonResult Register(RegisterModel account)
 		{
 			if (ModelState.IsValid)
 			{
@@ -45,9 +52,9 @@ namespace MoodPocket.WebUI.Controllers
 					IsVerified = false,
 				});
 				userRepository.Complete();
-				return RedirectToAction("Index", "Home");
+				return Json(new { status = "ok" }, JsonRequestBehavior.AllowGet);
 			}
-			return View(account);
+			return Json(new { status = "error" }, JsonRequestBehavior.AllowGet);
 		}
 
 		[HttpPost]
@@ -56,8 +63,46 @@ namespace MoodPocket.WebUI.Controllers
 			User user = userRepository.Filter(Username, Email);
 			return Json(user == null);
 		}
-		
 
+		[HttpPost]
+		[ValidateAjax]
+		[OnlyAnonymous]
+		[ValidateAntiForgeryToken]
+		public JsonResult Login(LoginModel model)
+		{
+			if (ModelState.IsValid)
+			{
+				User user = userRepository.Filter(model.Username);
+				if(user != null)
+				{
+					if(PasswordHelperUtility.ValidatePassword(model.Password, user.Password, user.Salt))
+					{
+						FormsAuthentication.SetAuthCookie(model.Username, model.RememberMe);
+						return Json(new { status = "ok" }, JsonRequestBehavior.AllowGet);
+					}
+				}
+			}
+			HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+			ModelState.AddModelError("Username", "Invalid credentials");
+			var errors = from field in ModelState.Keys
+						 where ModelState[field].Errors.Count > 0
+						 select new
+						 {
+							 key = field,
+							 errors = ModelState[field].Errors
+											.Select(f => f.ErrorMessage)
+											.ToArray()
+						 };
 
-    }
+			return new JsonResult() { Data = errors };
+		}
+
+		[Authorize]
+		public ActionResult LogOut()
+		{
+			FormsAuthentication.SignOut();
+			return RedirectToAction("Entry");
+		}
+
+	}
 }
