@@ -19,12 +19,12 @@ namespace MoodPocket.WebUI
 			bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
 						"~/Scripts/modernizr-*"));
 
-			bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-					  "~/Scripts/bootstrap.js",
+			bundles.Add(new ScriptBundle("~/bundles/materialize").Include(
+					  "~/Scripts/materialize/materialize.js",
 					  "~/Scripts/respond.js"));
 
 			bundles.Add(new StyleBundle("~/Content/css").Include(
-					  "~/Content/bootstrap.css",
+					  "~/Content/materialize/css/materialize.css",
 					  "~/Content/site.css"));
 			bundles.Add(new ScriptBundle("~/bundles/account-scripts").Include(
 				"~/Scripts/AccountScripts/entry.js"));

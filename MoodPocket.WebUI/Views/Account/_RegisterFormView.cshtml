@@ -3,27 +3,26 @@
 {
     @Html.AntiForgeryToken()
     <h2>REGISTER</h2>
-    <div class="form-group">
-        @Html.TextBoxFor(model => model.Username, new { @class = "form-control", @placeholder = "Username", @tabindex = "1", value = "", id = "username" })
+    <div class="input-field">
+        @Html.TextBoxFor(model => model.Username, new { @class = "form-control", @placeholder = "Username", value = "", id = "username" })
         @Html.ValidationMessageFor(model => model.Username, "", new { @style = "color: #ef9a9a" })
     </div>
-    <div class="form-group">
-        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "Email", @tabindex = "1", value = "", id = "email" })
+    <div class="input-field">
+        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "Email", value = "", id = "email" })
         @Html.ValidationMessageFor(model => model.Email, "", new { @style = "color: #ef9a9a" })
     </div>
-    <div class="form-group">
-        @Html.TextBoxFor(model => model.Password, new { @class = "form-control", @placeholder = "Password", tabindex = "2" })
+    <div class="input-field">
+        @Html.TextBoxFor(model => model.Password, new { @class = "form-control", @placeholder = "Password"})
         @Html.ValidationMessageFor(model => model.Password, "", new { @style = "color: #ef9a9a" })
     </div>
-    <div class="form-group">
-        @Html.TextBoxFor(model => model.ConfirmPassword, new { @class = "form-control", @placeholder = "Password again", @tabindex = "2" })
+    <div class="input-field">
+        @Html.TextBoxFor(model => model.ConfirmPassword, new { @class = "form-control", @placeholder = "Password again"})
         @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @style = "color: #ef9a9a" })
     </div>
-    <div class="form-group">
+    <div class="input-fiel">
         <div class="row">
-            <div class="col-sm-6 col-sm-offset-3">
-                <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
-            </div>
+            <button type="submit" name="register-submit" id="register-submit" class="form-control btn btn-register waves-effect waves-light" >Create Account</button>
         </div>
     </div>
 }
+

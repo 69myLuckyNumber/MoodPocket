@@ -3,21 +3,23 @@
 {
     @Html.AntiForgeryToken()
     <h2>LOGIN</h2>
-    <div class="form-group">
-        @Html.TextBoxFor(model => model.Username, new { @class = "form-control", @placeholder = "Username", @tabindex = "1", value = "", id = "username" })
+    <div class="input-field">
+        @Html.TextBoxFor(model => model.Username, new { @class = "form-control", @placeholder = "Username", value = "", id = "username" })
         @Html.ValidationMessageFor(model => model.Username, "", new { @style = "color: #ef9a9a" })
     </div>
-    <div class="form-group">
-        @Html.TextBoxFor(model => model.Password, new { @class = "form-control", @placeholder = "Password", tabindex = "2" })
+    <div class="input-field">
+        @Html.TextBoxFor(model => model.Password, new { @class = "form-control", @placeholder = "Password" })
         @Html.ValidationMessageFor(model => model.Password, "", new { @style = "color: #ef9a9a" })
     </div>
-    <div class="col-xs-6 form-group pull-left checkbox">
+    <div class="input-field">
         <input data-val="true" data-val-required="The Remember Me? field is required." id="RememberMe" name="RememberMe" type="checkbox" value="true">
         <label for="RememberMe">Remember Me?</label>
         <input name="RememberMe" type="hidden" value="false">
     </div>
     @Html.ValidationSummary()
-    <div class="col-xs-6 form-group pull-right">
-        <input type = "submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
+    <div>
+        <button type="submit" name="login-submit" id="login-submit"  class="form-control btn btn-login waves-effect waves-light" >
+            Log In
+        </button>
     </div>
 }
