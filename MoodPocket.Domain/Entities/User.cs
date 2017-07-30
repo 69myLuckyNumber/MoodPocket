@@ -1,4 +1,5 @@
 ﻿
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -21,5 +22,7 @@ namespace MoodPocket.Domain.Entities
 		public string Salt { get; set; }
 
 		public bool IsVerified { get; set; }
+
+		public ICollection<UGallery> Gallery { get; set; }
 	}
 }
