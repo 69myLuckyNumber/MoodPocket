@@ -12,3 +12,6 @@ D:\C#\Projects\Git\MoodPocket\MoodPocket.Domain\obj\Debug\MoodPocket.Domain.Migr
 D:\C#\Projects\Git\MoodPocket\MoodPocket.Domain\obj\Debug\MoodPocket.Domain.csproj.GenerateResource.Cache
 D:\C#\Projects\Git\MoodPocket\MoodPocket.Domain\obj\Debug\MoodPocket.Domain.Migrations.AddSaltProperty.resources
 D:\C#\Projects\Git\MoodPocket\MoodPocket.Domain\obj\Debug\MoodPocket.Domain.Migrations.AddIsVerifiedProp.resources
+D:\C#\Projects\Git\MoodPocket\MoodPocket.Domain\obj\Debug\MoodPocket.Domain.Migrations.AddGalleryPictureEntity.resources
+D:\C#\Projects\Git\MoodPocket\MoodPocket.Domain\obj\Debug\MoodPocket.Domain.Migrations.AddUserGalleries.resources
+D:\C#\Projects\Git\MoodPocket\MoodPocket.Domain\obj\Debug\MoodPocket.Domain.Migrations.Refactoring.resources

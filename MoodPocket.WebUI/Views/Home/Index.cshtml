@@ -10,6 +10,7 @@
         @if (User.Identity.IsAuthenticated)
         {
             @Html.RouteLink("Sign out", new { controller = "Account", action = "LogOut" })
+            @Html.RouteLink("Meme Land", new { controller = "Meme", action = "Index"})
         }
         else
         {

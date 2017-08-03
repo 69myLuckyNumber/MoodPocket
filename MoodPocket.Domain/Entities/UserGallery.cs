@@ -8,12 +8,15 @@ using System.Threading.Tasks;
 
 namespace MoodPocket.Domain.Entities
 {
-	public class UGallery
+	public class UserGallery
 	{
 		[Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public int GalleryID { get; set; }
 
 		public string Name { get; set; }
+
+		public int UserID { get; set; }
+		public User User { get; set; }
 
 		public virtual ICollection<GalleryPicture> GalleryPictures { get; set; }
 	}

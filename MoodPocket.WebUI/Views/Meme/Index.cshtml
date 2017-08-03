@@ -1,0 +1,18 @@
+﻿@model List<Imgur.API.Models.IGalleryItem>
+@{
+    ViewBag.Title = "Index";
+}
+
+<button type="submit" class="waves-effect waves-light btn-large" id="show-meme">
+    Browse Pictures
+</button>
+
+<div class="row" id="meme-container">
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/meme-scripts")
+    <script>
+        initMemeScripts("@Url.Action("ShowMemes", "Meme")");
+    </script>
+    }

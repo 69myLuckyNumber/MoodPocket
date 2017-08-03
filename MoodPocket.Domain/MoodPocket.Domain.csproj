@@ -47,11 +47,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IGalleryRepository.cs" />
     <Compile Include="Abstract\IUserRepository.cs" />
+    <Compile Include="Concrete\GalleryRepository.cs" />
     <Compile Include="Concrete\UserRepository.cs" />
     <Compile Include="Context\DatabaseContext.cs" />
     <Compile Include="Context\DBInitializer.cs" />
+    <Compile Include="Entities\GalleryPicture.cs" />
+    <Compile Include="Entities\UserPicture.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Entities\UserGallery.cs" />
     <Compile Include="Migrations\201707161241368_InitialCreate.cs" />
     <Compile Include="Migrations\201707161241368_InitialCreate.Designer.cs">
       <DependentUpon>201707161241368_InitialCreate.cs</DependentUpon>
@@ -63,6 +68,18 @@
     <Compile Include="Migrations\201707181602011_AddIsVerifiedProp.cs" />
     <Compile Include="Migrations\201707181602011_AddIsVerifiedProp.Designer.cs">
       <DependentUpon>201707181602011_AddIsVerifiedProp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707301045307_AddGalleryPictureEntity.cs" />
+    <Compile Include="Migrations\201707301045307_AddGalleryPictureEntity.Designer.cs">
+      <DependentUpon>201707301045307_AddGalleryPictureEntity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707301057329_AddUserGalleries.cs" />
+    <Compile Include="Migrations\201707301057329_AddUserGalleries.Designer.cs">
+      <DependentUpon>201707301057329_AddUserGalleries.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707301712400_Refactoring.cs" />
+    <Compile Include="Migrations\201707301712400_Refactoring.Designer.cs">
+      <DependentUpon>201707301712400_Refactoring.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -80,6 +97,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707181602011_AddIsVerifiedProp.resx">
       <DependentUpon>201707181602011_AddIsVerifiedProp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707301045307_AddGalleryPictureEntity.resx">
+      <DependentUpon>201707301045307_AddGalleryPictureEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707301057329_AddUserGalleries.resx">
+      <DependentUpon>201707301057329_AddUserGalleries.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707301712400_Refactoring.resx">
+      <DependentUpon>201707301712400_Refactoring.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

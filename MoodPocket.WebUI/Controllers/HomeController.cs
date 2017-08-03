@@ -1,4 +1,8 @@
-﻿using MoodPocket.Domain.Context;
+﻿using Imgur.API.Authentication.Impl;
+using Imgur.API.Endpoints.Impl;
+using Imgur.API.Enums;
+using MoodPocket.Domain.Context;
+using MoodPocket.WebUI.App_Start;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -10,5 +10,9 @@ namespace MoodPocket.Domain.Context
 
 		public DbSet<User> Users { get; set; }
 
+		public DbSet<UserGallery> Galleries { get; set; }
+
+		public DbSet<UserPicture> Pictures { get; set; }
+
 	}
 }

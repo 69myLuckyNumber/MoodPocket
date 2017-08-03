@@ -26,6 +26,7 @@ namespace MoodPocket.WebUI.Infrastructure
 		private void AddBindings()
 		{
 			ninjectKernel.Bind<IUserRepository>().To<UserRepository>();
+			ninjectKernel.Bind<IGalleryRepository>().To<GalleryRepository>();
 		}
 	}
 }

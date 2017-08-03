@@ -19,6 +19,8 @@ namespace MoodPocket.WebUI.App_Start
 		public static string IMGUR_ACCOUNT_ID { get; set; }
 		public static int IMGUR_EXPIRES_IN { get; set; }
 
+		public static OAuth2Token AccessToken { get; set; }
+
 		public static void Init()
 		{
 			IMGUR_CLIENT_ID = ConfigurationManager.AppSettings["CLIENT_ID"];
@@ -29,9 +31,9 @@ namespace MoodPocket.WebUI.App_Start
 			IMGUR_ACCOUNT_USERNAME = ConfigurationManager.AppSettings["ACCOUNT_USERNAME"];
 			IMGUR_ACCOUNT_ID = ConfigurationManager.AppSettings["ACCOUNT_ID"];
 			IMGUR_EXPIRES_IN = int.Parse(ConfigurationManager.AppSettings["EXPIRES_IN"]);
-
+			AccessToken = CreateToken();
 		}
-		public static OAuth2Token CreateToken()
+		private static OAuth2Token CreateToken()
 		{
 			var token = new OAuth2Token(IMGUR_ACCESS_TOKEN,
 										IMGUR_REFRESH_TOKEN,

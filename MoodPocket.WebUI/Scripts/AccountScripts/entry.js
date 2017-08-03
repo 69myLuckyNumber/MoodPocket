@@ -1,8 +1,8 @@
-﻿function initAccountScripts(registerUrl, loginUrl, homeUrl) {
+﻿function initAccountScripts(registerUrl, loginUrl, homeUrl, entryUrl) {
     changeForm();
     $("#register-submit").on('click',function (e) {
         e.preventDefault();
-        loginOrRegister($("#register-form"),registerUrl, loginUrl, "Register");
+        loginOrRegister($("#register-form"), registerUrl, entryUrl, "Register");
     });
     $("#login-submit").on('click', function (e) {
         e.preventDefault();

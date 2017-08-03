@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MoodPocket.Domain.Entities
 {
-	public class UPicture
+	public class UserPicture
 	{
 		[Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public int PictureID { get; set; }
