@@ -4,7 +4,11 @@
         $('.materialboxed').materialbox();
         showMeme(showMemeUrl);
     });
-    
+    $(window).scroll(function () {
+        if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+            showMeme(showMemeUrl);
+        }
+    });
 }
 
 function showMeme(url) {

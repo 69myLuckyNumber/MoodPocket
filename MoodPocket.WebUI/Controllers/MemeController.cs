@@ -3,16 +3,14 @@ using Imgur.API.Endpoints.Impl;
 using Imgur.API.Models;
 using MoodPocket.Domain.Abstract;
 using MoodPocket.WebUI.App_Start;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MoodPocket.WebUI.Controllers
 {
-    public class MemeController : Controller
+	public class MemeController : Controller
     {
 		private GalleryEndpoint endpoint;				// api
 		private IGalleryRepository galleryRepository;

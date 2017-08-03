@@ -1,9 +1,5 @@
 ﻿using MoodPocket.Domain.Abstract;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MoodPocket.Domain.Entities;
 using MoodPocket.Domain.Context;
 
