@@ -1,10 +1,12 @@
 ﻿using MoodPocket.Domain.Abstract;
 using MoodPocket.Domain.Concrete;
+using MoodPocket.WebUI.Utilities;
 
 using System;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Ninject;
+
 
 namespace MoodPocket.WebUI.Infrastructure
 {
@@ -27,6 +29,7 @@ namespace MoodPocket.WebUI.Infrastructure
 		{
 			ninjectKernel.Bind<IUserRepository>().To<UserRepository>();
 			ninjectKernel.Bind<IGalleryRepository>().To<GalleryRepository>();
+			ninjectKernel.Bind<ICacheService>().To<CacheService>();
 		}
 	}
 }

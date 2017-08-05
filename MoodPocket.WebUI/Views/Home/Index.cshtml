@@ -7,10 +7,10 @@
 
 <div class="container">
     <div class="row">
+        @Html.RouteLink("Kill Time", new { controller = "Meme", action = "Index" })
         @if (User.Identity.IsAuthenticated)
         {
-            @Html.RouteLink("Sign out", new { controller = "Account", action = "LogOut" })
-            @Html.RouteLink("Meme Land", new { controller = "Meme", action = "Index"})
+            @Html.RouteLink("Sign out", new { controller = "Account", action = "LogOut" }) 
         }
         else
         {

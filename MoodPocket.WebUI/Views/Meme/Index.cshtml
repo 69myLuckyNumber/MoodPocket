@@ -6,13 +6,26 @@
 <button type="submit" class="waves-effect waves-light btn-large" id="show-meme">
     Browse Pictures
 </button>
-
+<div class="preloader-wrapper big">
+    <div class="spinner-layer spinner-blue-only">
+        <div class="circle-clipper left">
+            <div class="circle"></div>
+        </div><div class="gap-patch">
+            <div class="circle"></div>
+        </div><div class="circle-clipper right">
+            <div class="circle"></div>
+        </div>
+    </div>
+</div>
 <div class="row" id="meme-container">
 </div>
 
 @section scripts{
     @Scripts.Render("~/bundles/meme-scripts")
     <script>
-        initMemeScripts("@Url.Action("ShowMemes", "Meme")");
+        $(document).ready(function () {
+            initMemeScripts("@Url.Action("ShowMemes", "Meme")", "@Url.Action("SaveMeme","Meme")");
+        });
+
     </script>
     }
