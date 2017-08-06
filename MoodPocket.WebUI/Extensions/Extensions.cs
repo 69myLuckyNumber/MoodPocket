@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
+using MoodPocket.WebUI.Extensions;
 namespace MoodPocket.WebUI.Extensions
 {
 	public static class Extensions
@@ -23,10 +23,15 @@ namespace MoodPocket.WebUI.Extensions
 				temp.AddRange(list.GetRange(0, quantity));
 				list.RemoveRange(0, quantity);
 			}
-			else
+			else if (list.Count < quantity && list.Count != 1)
 			{
 				temp.AddRange(list.GetRange(0, list.Count - 1));
 				list.RemoveRange(0, list.Count - 1);
+			}
+			else
+			{
+				temp.Add(list[0]);
+				list.RemoveAt(0);
 			}
 			return temp;
 		}
@@ -42,6 +47,18 @@ namespace MoodPocket.WebUI.Extensions
 				return true;
 
 			return !list.Any();
+		}
+		/// <summary>
+		/// Takes amount of objects according to given percentage
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="source"></param>
+		/// <param name="percent"></param>
+		/// <returns></returns>
+		public static IEnumerable<T> TakeInPercentage<T>(this IEnumerable<T> source, int percent)
+		{
+			int count = (source.Count() * percent / 100);
+			return source.Take(count);
 		}
 		#endregion
 	}

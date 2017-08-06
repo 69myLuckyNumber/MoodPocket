@@ -27,7 +27,7 @@ function showMemes(url) {
                                         '</div>' +
                                         '<div class="card-content meme-card-content" >' +
                                             '<span class="card-title activator grey-text text-darken-4">'+
-                                                '<a class="btn-floating halfway-fab waves-effect waves-light blue-grey lighten-4 meme-save-btn tooltipped" data-position="left" data-delay="50" data-tooltip="Save">' +
+                                                '<a class="btn-floating halfway-fab waves-effect waves-light blue-grey lighten-4 meme-save-btn tooltipped" id="save-meme" data-position="left" data-delay="50" data-tooltip="Save">' +
                                                     '<i class="material-icons" style="color: #666;">sentiment_very_satisfied</i>' +
                                                 '</a>' +
                                             '</span>' +

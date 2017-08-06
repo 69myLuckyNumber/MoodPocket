@@ -5,6 +5,7 @@ using Imgur.API.Models;
 using MoodPocket.Domain.Abstract;
 using MoodPocket.WebUI.App_Start;
 using MoodPocket.WebUI.Utilities;
+using MoodPocket.WebUI.Extensions;
 
 using System.Collections.Generic;
 using System.Linq;
@@ -33,9 +34,12 @@ namespace MoodPocket.WebUI.Controllers
 		}
 		private async Task<List<IImage>> GetMemesAsync() 
 		{
-			IEnumerable<IGalleryItem> memeGallery = await GetMemesSubGalleryAsync();
+			IEnumerable<IGalleryItem> memeGallery = (await GetMemesSubGalleryAsync());
 
-			List<IGalleryItem> memeAlbum = memeGallery.Where(t => t.GetType().Name == "GalleryAlbum").ToList();
+			IEnumerable<IGalleryItem> memeAlbum = memeGallery
+				.Where(t => t.GetType().Name == "GalleryAlbum")
+				.TakeInPercentage(20)
+				.ToList();
 
 			List<IImage> memes = new List<IImage>();
 			foreach (IGalleryAlbum meme in memeAlbum)
