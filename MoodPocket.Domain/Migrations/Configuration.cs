@@ -10,7 +10,6 @@ namespace MoodPocket.Domain.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "MoodPocket.Domain.Context.DatabaseContext";
         }
 
         protected override void Seed(MoodPocket.Domain.Context.DatabaseContext context)

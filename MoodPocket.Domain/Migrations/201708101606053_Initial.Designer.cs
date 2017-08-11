@@ -7,13 +7,13 @@ namespace MoodPocket.Domain.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddGalleryPictureEntity : IMigrationMetadata
+    public sealed partial class Initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddGalleryPictureEntity));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201707301045307_AddGalleryPictureEntity"; }
+            get { return "201708101606053_Initial"; }
         }
         
         string IMigrationMetadata.Source

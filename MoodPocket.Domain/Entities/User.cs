@@ -23,6 +23,6 @@ namespace MoodPocket.Domain.Entities
 
 		public bool IsVerified { get; set; }
 
-		public List<UserGallery> Galleries { get; set; }
+		public virtual List<UserGallery> Galleries { get; set; }
 	}
 }

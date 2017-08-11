@@ -13,7 +13,5 @@ namespace MoodPocket.Domain.Abstract
 
 		void CreateUser(User user);
 
-		void Complete();
-
 	}
 }

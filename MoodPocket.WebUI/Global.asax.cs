@@ -14,7 +14,6 @@ namespace MoodPocket.WebUI
 	{
 		protected void Application_Start()
 		{
-			//Database.SetInitializer(new DBInitializer());
 
 			AreaRegistration.RegisterAllAreas();
 			FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

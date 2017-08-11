@@ -11,6 +11,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using MoodPocket.WebUI.Models;
+using MoodPocket.Domain.Entities;
 
 namespace MoodPocket.WebUI.Controllers
 {
@@ -18,7 +20,9 @@ namespace MoodPocket.WebUI.Controllers
     {
 		private GalleryEndpoint galleryEndpoint; // api
 		private AlbumEndpoint albumEndpoint;     // api
-		private IGalleryRepository galleryRepository;
+
+		private IUnitOfWork unitOfWork;
+
 		private ICacheService cacheService;
 
         public ActionResult Index()
@@ -26,13 +30,14 @@ namespace MoodPocket.WebUI.Controllers
             return View();
         }
 
+		#region ImgurEndpointRegion
 		[HttpPost]
-		public async Task<ActionResult> ShowMemes()
+		public async Task<JsonResult> ShowMemes()
 		{
 			return Json(await cacheService.GetOrSet("Memes", async () => await GetMemesAsync()));
 
 		}
-		private async Task<List<IImage>> GetMemesAsync() 
+		private async Task<List<IImage>> GetMemesAsync()
 		{
 			IEnumerable<IGalleryItem> memeGallery = (await GetMemesSubGalleryAsync());
 
@@ -58,12 +63,34 @@ namespace MoodPocket.WebUI.Controllers
 		{
 			return await galleryEndpoint.GetMemesSubGalleryAsync();   // api
 		}
-		private async Task<IEnumerable<IGalleryItem>> GetGalleryAsync() 
+		private async Task<IEnumerable<IGalleryItem>> GetGalleryAsync()
 		{
 			return await galleryEndpoint.GetRandomGalleryAsync();   // api
 		}
 
-		public MemeController(IGalleryRepository galleryRepo, ICacheService cacheServ)
+		#endregion
+
+		[Authorize]
+		public JsonResult SaveMeme(PictureModel picture)
+		{
+			User currentUser = unitOfWork.CurrentUserGetter.GetCurrentUser(HttpContext.User.Identity.Name);
+			UserGallery galleryDb = unitOfWork.GalleryRepository.GetOrCreate(currentUser);
+			UserPicture pictureDb = unitOfWork.PictureRepository.GetOrCreate(new UserPicture() { Url = picture.Url, GalleryPictures = null });
+
+
+			unitOfWork.GalleryPictureRepository.Create(new GalleryPicture()
+			{
+				Gallery = galleryDb,
+				GalleryID = galleryDb.GalleryID,
+				Picture = pictureDb,
+				PictureID = pictureDb.PictureID
+			});
+
+			unitOfWork.Commit();
+			return Json(picture);
+		}
+
+		public MemeController(IUnitOfWork uow, ICacheService cacheServ)
 		{
 			var client = new ImgurClient(		
 				ImgurClientConfig.IMGUR_CLIENT_ID,
@@ -72,7 +99,9 @@ namespace MoodPocket.WebUI.Controllers
 
 			galleryEndpoint = new GalleryEndpoint(client);
 			albumEndpoint = new AlbumEndpoint(client); // api
-			galleryRepository = galleryRepo;
+
+			unitOfWork = uow;
+
 			cacheService = cacheServ;
 		}
 	}

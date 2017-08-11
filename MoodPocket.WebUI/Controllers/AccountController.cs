@@ -8,16 +8,17 @@ using System.Web.Mvc;
 using System.Web.Security;
 using System.Net;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace MoodPocket.WebUI.Controllers
 {
 	public class AccountController : Controller
 	{
-		private IUserRepository userRepository;
+		private IUnitOfWork unitOfWork;
 
-		public AccountController(IUserRepository repo)
+		public AccountController(IUnitOfWork uow)
 		{
-			userRepository = repo;
+			unitOfWork = uow;
 		}
 
 		[HttpGet]
@@ -42,7 +43,7 @@ namespace MoodPocket.WebUI.Controllers
 			{
 				string salt = PasswordHelperUtility.GetRandomSalt();
 				string hashedPassword = PasswordHelperUtility.HashPassword(account.Password, salt);
-				userRepository.CreateUser(new User()
+				unitOfWork.UserRepository.CreateUser(new User()
 				{
 					Username = account.Username,
 					Salt = salt,
@@ -50,8 +51,9 @@ namespace MoodPocket.WebUI.Controllers
 					ConfirmPassword = hashedPassword,
 					Email = account.Email,
 					IsVerified = false,
+					Galleries = new List<UserGallery>()
 				});
-				userRepository.Complete();
+				unitOfWork.Commit();
 				return Json(new { status = "ok" }, JsonRequestBehavior.AllowGet);
 			}
 			return Json(new { status = "error" }, JsonRequestBehavior.AllowGet);
@@ -60,7 +62,7 @@ namespace MoodPocket.WebUI.Controllers
 		[HttpPost]
 		public JsonResult DoesUserExists(string Username, string Email)
 		{
-			User user = userRepository.Filter(Username, Email);
+			User user = unitOfWork.UserRepository.Filter(Username, Email);
 			return Json(user == null);
 		}
 
@@ -72,7 +74,7 @@ namespace MoodPocket.WebUI.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				User user = userRepository.Filter(model.Username);
+				User user = unitOfWork.UserRepository.Filter(model.Username);
 				if(user != null)
 				{
 					if(PasswordHelperUtility.ValidatePassword(model.Password, user.Password, user.Salt))

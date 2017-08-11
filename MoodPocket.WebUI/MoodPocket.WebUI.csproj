@@ -64,6 +64,9 @@
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.3.2.3.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -166,15 +169,16 @@
     </Compile>
     <Compile Include="Infrastructure\NinjectConrollerFactory.cs" />
     <Compile Include="Models\AccountModel.cs" />
+    <Compile Include="Models\PictureModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\CacheService.cs" />
     <Compile Include="Utilities\PasswordHelperUtility.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
-    <Content Include="App_Data\db.mdf" />
-    <Content Include="App_Data\db_log.ldf">
-      <DependentUpon>db.mdf</DependentUpon>
+    <Content Include="App_Data\db1.mdf" />
+    <Content Include="App_Data\db1_log.ldf">
+      <DependentUpon>db1.mdf</DependentUpon>
     </Content>
     <Content Include="Content\materialize\css\materialize.css" />
     <Content Include="Content\materialize\css\materialize.min.css" />

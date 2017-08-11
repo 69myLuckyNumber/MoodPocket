@@ -7,11 +7,6 @@ D:\C#\Projects\Git\MoodPocket\MoodPocket.Domain\bin\Debug\EntityFramework.xml
 D:\C#\Projects\Git\MoodPocket\MoodPocket.Domain\bin\Debug\EntityFramework.SqlServer.xml
 D:\C#\Projects\Git\MoodPocket\MoodPocket.Domain\obj\Debug\MoodPocket.Domain.dll
 D:\C#\Projects\Git\MoodPocket\MoodPocket.Domain\obj\Debug\MoodPocket.Domain.pdb
-D:\C#\Projects\Git\MoodPocket\MoodPocket.Domain\obj\Debug\MoodPocket.Domain.csprojResolveAssemblyReference.cache
-D:\C#\Projects\Git\MoodPocket\MoodPocket.Domain\obj\Debug\MoodPocket.Domain.Migrations.InitialCreate.resources
+D:\C#\Projects\Git\MoodPocket\MoodPocket.Domain\obj\Debug\MoodPocket.Domain.Migrations.Initial.resources
 D:\C#\Projects\Git\MoodPocket\MoodPocket.Domain\obj\Debug\MoodPocket.Domain.csproj.GenerateResource.Cache
-D:\C#\Projects\Git\MoodPocket\MoodPocket.Domain\obj\Debug\MoodPocket.Domain.Migrations.AddSaltProperty.resources
-D:\C#\Projects\Git\MoodPocket\MoodPocket.Domain\obj\Debug\MoodPocket.Domain.Migrations.AddIsVerifiedProp.resources
-D:\C#\Projects\Git\MoodPocket\MoodPocket.Domain\obj\Debug\MoodPocket.Domain.Migrations.AddGalleryPictureEntity.resources
-D:\C#\Projects\Git\MoodPocket\MoodPocket.Domain\obj\Debug\MoodPocket.Domain.Migrations.AddUserGalleries.resources
-D:\C#\Projects\Git\MoodPocket\MoodPocket.Domain\obj\Debug\MoodPocket.Domain.Migrations.Refactoring.resources
+D:\C#\Projects\Git\MoodPocket\MoodPocket.Domain\obj\Debug\MoodPocket.Domain.csprojResolveAssemblyReference.cache

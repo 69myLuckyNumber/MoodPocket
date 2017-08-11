@@ -1,4 +1,4 @@
-﻿function initMemeScripts(showMemesUrl) {
+﻿function initMemeScripts(showMemesUrl, saveMemeUrl) {
     $("#show-meme").on('click', function (e) {
         $("#show-meme").hide();
         $(".preloader-wrapper").addClass('active');
@@ -11,7 +11,27 @@
             showMemes(showMemesUrl);
         }
     });
+    $(document).on('click', '.save-meme',function (e) {
+        e.preventDefault();
+        var memeUrl = $(this).next('#meme-url').val();
+        saveMeme(saveMemeUrl, memeUrl);
+    });
+}
 
+function saveMeme(postUrl, imageUrl) {
+    var meme = {
+        Url: imageUrl
+    };
+
+    $.ajax({
+        url: postUrl,
+        type: 'POST',
+        contentType: "application/json",
+        data: JSON.stringify({ picture: meme }),
+        success: function (response) {
+            alert("Ok");
+        }
+    });
 }
 
 function showMemes(url) {
@@ -26,11 +46,12 @@ function showMemes(url) {
                                         '<img class="materialboxed" src="' + item.Link + '" />' +
                                         '</div>' +
                                         '<div class="card-content meme-card-content" >' +
-                                            '<span class="card-title activator grey-text text-darken-4">'+
-                                                '<a class="btn-floating halfway-fab waves-effect waves-light blue-grey lighten-4 meme-save-btn tooltipped" id="save-meme" data-position="left" data-delay="50" data-tooltip="Save">' +
-                                                    '<i class="material-icons" style="color: #666;">sentiment_very_satisfied</i>' +
-                                                '</a>' +
-                                            '</span>' +
+                                           
+                                            '<a class="btn-floating halfway-fab waves-effect waves-light blue-grey lighten-4 meme-save-btn tooltipped save-meme" data-position="left" data-delay="50" data-tooltip="Save" type="submit">' +
+                                                '<i class="material-icons " style="color: #666;">sentiment_very_satisfied</i>' +
+                                            '</a>' +
+                                            '<input type="hidden" value="'+ item.Link +'" id="meme-url"/>'+
+                                            
                                             '<p><i class="material-icons">visibility</i>' + item.Views + '</p>' +
                                         '</div>' +
                                     '</div>' +
