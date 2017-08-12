@@ -6,13 +6,15 @@ using MoodPocket.Domain.Abstract;
 using MoodPocket.WebUI.App_Start;
 using MoodPocket.WebUI.Utilities;
 using MoodPocket.WebUI.Extensions;
+using MoodPocket.WebUI.Models;
+using MoodPocket.Domain.Entities;
+using MoodPocket.Domain.Extensions;
 
+using System.Web.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web.Mvc;
-using MoodPocket.WebUI.Models;
-using MoodPocket.Domain.Entities;
+using System;
 
 namespace MoodPocket.WebUI.Controllers
 {
@@ -71,24 +73,37 @@ namespace MoodPocket.WebUI.Controllers
 		#endregion
 
 		[Authorize]
-		public JsonResult SaveMeme(PictureModel picture)
+		public ActionResult SaveMeme(PictureModel picture)
 		{
-			User currentUser = unitOfWork.CurrentUserGetter.GetCurrentUser(HttpContext.User.Identity.Name);
-			UserGallery galleryDb = unitOfWork.GalleryRepository.GetOrCreate(currentUser);
-			UserPicture pictureDb = unitOfWork.PictureRepository.GetOrCreate(new UserPicture() { Url = picture.Url, GalleryPictures = null });
-
-
-			unitOfWork.GalleryPictureRepository.Create(new GalleryPicture()
+			try
 			{
-				Gallery = galleryDb,
-				GalleryID = galleryDb.GalleryID,
-				Picture = pictureDb,
-				PictureID = pictureDb.PictureID
-			});
+				User currentUser = unitOfWork.CurrentUserGetter.GetCurrentUser(HttpContext.User.Identity.Name);
+				UserGallery galleryDb = unitOfWork.GalleryRepository.GetOrCreate(currentUser);
+				UserPicture pictureDb = unitOfWork.PictureRepository.GetOrCreate(new UserPicture()
+				{
+					Url = picture.Url,
+					GalleryPictures = new List<GalleryPicture>()
+				});
 
-			unitOfWork.Commit();
+				unitOfWork.GalleryPictureRepository.Create(new GalleryPicture()
+				{
+					Gallery = galleryDb,
+					GalleryID = galleryDb.GalleryID,
+					Picture = pictureDb,
+					PictureID = pictureDb.PictureID
+				});
+
+				unitOfWork.Commit();
+			}
+			catch (InvalidOperationException)
+			{
+				return new HttpStatusCodeResult(400); // Bad request
+			}
+
 			return Json(picture);
 		}
+
+
 
 		public MemeController(IUnitOfWork uow, ICacheService cacheServ)
 		{
@@ -97,8 +112,8 @@ namespace MoodPocket.WebUI.Controllers
 				ImgurClientConfig.IMGUR_CLIENT_SECRET,
 				ImgurClientConfig.AccessToken);				// api
 
-			galleryEndpoint = new GalleryEndpoint(client);
-			albumEndpoint = new AlbumEndpoint(client); // api
+			galleryEndpoint = new GalleryEndpoint(client);  // api
+			albumEndpoint = new AlbumEndpoint(client);		// api
 
 			unitOfWork = uow;
 

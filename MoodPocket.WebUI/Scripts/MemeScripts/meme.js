@@ -29,7 +29,10 @@ function saveMeme(postUrl, imageUrl) {
         contentType: "application/json",
         data: JSON.stringify({ picture: meme }),
         success: function (response) {
-            alert("Ok");
+            Materialize.toast('Saved', 3000);
+        },
+        error: function (response) {
+            Materialize.toast("Already saved", 3000);
         }
     });
 }
@@ -41,24 +44,24 @@ function showMemes(url) {
         success: function (response) {
             $.each(response, function (index, item) {
                 var memeCard = '<div class="col m4" id="meme-card">' +
-                                    '<div class="card hoverable">' +
-                                        '<div class="card-image">' +
-                                        '<img class="materialboxed" src="' + item.Link + '" />' +
-                                        '</div>' +
-                                        '<div class="card-content meme-card-content" >' +
-                                           
-                                            '<a class="btn-floating halfway-fab waves-effect waves-light blue-grey lighten-4 meme-save-btn tooltipped save-meme" data-position="left" data-delay="50" data-tooltip="Save" type="submit">' +
-                                                '<i class="material-icons " style="color: #666;">sentiment_very_satisfied</i>' +
-                                            '</a>' +
-                                            '<input type="hidden" value="'+ item.Link +'" id="meme-url"/>'+
-                                            
-                                            '<p><i class="material-icons">visibility</i>' + item.Views + '</p>' +
-                                        '</div>' +
-                                    '</div>' +
-                                '</div >';
+                    '<div class="card hoverable">' +
+                    '<div class="card-image">' +
+                    '<img class="materialboxed" src="' + item.Link + '" />' +
+                    '</div>' +
+                    '<div class="card-content meme-card-content" >' +
+
+                    '<a class="btn-floating halfway-fab waves-effect waves-light blue-grey lighten-4 meme-save-btn tooltipped save-meme" data-position="left" data-delay="50" data-tooltip="Save" type="submit">' +
+                    '<i class="material-icons " style="color: #666;">sentiment_very_satisfied</i>' +
+                    '</a>' +
+                    '<input type="hidden" value="' + item.Link + '" id="meme-url"/>' +
+
+                    '<p><i class="material-icons">visibility</i>' + item.Views + '</p>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div >';
                 $("#meme-container").append(memeCard);
-                
-            })
+
+            });
             $(".preloader-wrapper").removeClass('active');
             materializeJsInit();
         }

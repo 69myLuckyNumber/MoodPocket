@@ -25,9 +25,14 @@ namespace MoodPocket.Domain.Concrete
 
 		public void	Create(GalleryPicture galleryPicture)
 		{
-			_context.GalleryPictures.Add(galleryPicture);
-			_context.Galleries.FirstOrDefault(g => g.GalleryID == galleryPicture.GalleryID).GalleryPictures.Add(galleryPicture);
-			_context.Pictures.FirstOrDefault(g => g.PictureID == galleryPicture.PictureID).GalleryPictures.Add(galleryPicture);
+			if(_context.GalleryPictures.FirstOrDefault(g=>g.GalleryID == galleryPicture.GalleryID && g.PictureID == galleryPicture.PictureID) == null)
+			{
+				_context.GalleryPictures.Add(galleryPicture);
+				_context.Galleries.FirstOrDefault(g => g.GalleryID == galleryPicture.GalleryID).GalleryPictures.Add(galleryPicture);
+				_context.Pictures.FirstOrDefault(g => g.PictureID == galleryPicture.PictureID).GalleryPictures.Add(galleryPicture);
+				return;
+			}
+			throw new InvalidOperationException();
 		}
 	}
 }
