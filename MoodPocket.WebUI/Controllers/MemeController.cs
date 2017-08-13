@@ -8,7 +8,6 @@ using MoodPocket.WebUI.Utilities;
 using MoodPocket.WebUI.Extensions;
 using MoodPocket.WebUI.Models;
 using MoodPocket.Domain.Entities;
-using MoodPocket.Domain.Extensions;
 
 using System.Web.Mvc;
 using System.Collections.Generic;

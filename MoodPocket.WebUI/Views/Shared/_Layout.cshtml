@@ -10,6 +10,27 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+    <ul id="slide-out" class="side-nav fixed">
+        <li>
+            <div class="user-view">
+                <div class="background">
+                    <img src="https://material.io/static/images/hub/gallery.svg">
+                </div>
+                <a href="#!name"><span class="name">@User.Identity.Name</span></a>
+            </div>
+        </li>
+        <li><a href="/Meme"><i class="material-icons waves-effect" style="margin-right: 23px;">dashboard</i>Browse Memes</a></li>
+        <li><div class="divider"></div></li>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <li>@Html.RouteLink("Sign out", new { controller = "Account", action = "LogOut" , @class="waves-effect"})</li>
+        }
+        else
+        {
+            <li>@Html.RouteLink("Join us", new { controller = "Account", action = "Entry", @class = "waves-effect" })</li>
+        }
+    </ul>
+    <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
     <div class="container">
         @RenderBody()
     </div>
@@ -17,6 +38,9 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/materialize")
+    <script>
+        $(".button-collapse").sideNav();
+    </script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
