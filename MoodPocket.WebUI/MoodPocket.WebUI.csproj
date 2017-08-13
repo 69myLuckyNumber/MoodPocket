@@ -159,9 +159,11 @@
     <Compile Include="App_Start\ImgurClientConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\GalleryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MemeController.cs" />
     <Compile Include="Extensions\Extensions.cs" />
+    <Compile Include="Filters\AjaxAuthorizeAttribute.cs" />
     <Compile Include="Filters\OnlyAnonymousAttribute.cs" />
     <Compile Include="Filters\ValidateAjaxAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -266,7 +268,8 @@
     <Content Include="Views\Account\_RegisterFormView.cshtml" />
     <Content Include="Views\Account\_LoginFormView.cshtml" />
     <Content Include="Views\Meme\Index.cshtml" />
-    <Content Include="Views\Meme\_ImageView.cshtml" />
+    <Content Include="Views\Gallery\Index.cshtml" />
+    <Content Include="Views\Gallery\_PictureView.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

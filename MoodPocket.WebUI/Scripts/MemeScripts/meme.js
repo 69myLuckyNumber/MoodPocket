@@ -16,6 +16,20 @@
         var memeUrl = $(this).next('#meme-url').val();
         saveMeme(saveMemeUrl, memeUrl);
     });
+
+    $(document).ajaxError(function (e, xhr) {
+        if (xhr.status == 403) {
+            var response = $.parseJSON(xhr.responseText);
+            var $toastContent = $('<a class="btn-flat toast-login" style="color: #fffbfb;margin-left: 0rem;">Join us <i class="material-icons right">person_add</i></a>');
+            Materialize.toast($toastContent, 10000);
+            $(".toast-login").on('click', function (e) {
+                window.location = response.Url;
+            });
+        } else if (xhr.status == 400) {
+            var response = $.parseJSON(xhr.responseText);
+            Materialize.toast(response, 3000);
+        }
+    });
 }
 
 function saveMeme(postUrl, imageUrl) {
@@ -30,9 +44,6 @@ function saveMeme(postUrl, imageUrl) {
         data: JSON.stringify({ picture: meme }),
         success: function (response) {
             Materialize.toast('Saved', 3000);
-        },
-        error: function (response) {
-            Materialize.toast("Already saved", 3000);
         }
     });
 }

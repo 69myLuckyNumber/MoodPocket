@@ -21,9 +21,9 @@ namespace MoodPocket.Domain.Concrete
 			get { return _context.Galleries; }
 		}
 
-		public IQueryable<UserPicture> getAllGalleryPictures(User user)
+		public IQueryable<UserPicture> getAllPictures(int userId)
 		{
-			return _context.GalleryPictures.Where(g => g.Gallery.UserID == user.Id).Select(p => p.Picture) as IQueryable<UserPicture>;
+			return _context.GalleryPictures.Where(g => g.Gallery.UserID == userId).Select(p => p.Picture) as IQueryable<UserPicture>;
 		}
 
 		public UserGallery GetOrCreate(User user)

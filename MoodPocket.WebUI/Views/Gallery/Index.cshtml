@@ -1,0 +1,13 @@
+﻿@model IQueryable<MoodPocket.Domain.Entities.UserPicture>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="row">
+    @foreach (var picture in Model)
+    {
+        @Html.Partial("_PictureView", picture)
+    }
+</div>
+
+

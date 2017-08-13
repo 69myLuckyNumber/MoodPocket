@@ -9,6 +9,6 @@ namespace MoodPocket.Domain.Abstract
 
 		UserGallery GetOrCreate(User user);
 
-		IQueryable<UserPicture> getAllGalleryPictures(User user);
+		IQueryable<UserPicture> getAllPictures(int userId);
 	}
 }

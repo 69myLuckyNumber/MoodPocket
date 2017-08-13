@@ -14,9 +14,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System;
+using System.Net;
+using MoodPocket.WebUI.Filters;
+using System.Reflection;
 
 namespace MoodPocket.WebUI.Controllers
 {
+	[AllowAnonymous]
 	public class MemeController : Controller
     {
 		private GalleryEndpoint galleryEndpoint; // api
@@ -70,8 +74,9 @@ namespace MoodPocket.WebUI.Controllers
 		}
 
 		#endregion
-
-		[Authorize]
+		
+		[HttpPost]
+		[AjaxAuthorize]
 		public ActionResult SaveMeme(PictureModel picture)
 		{
 			try
@@ -96,7 +101,8 @@ namespace MoodPocket.WebUI.Controllers
 			}
 			catch (InvalidOperationException)
 			{
-				return new HttpStatusCodeResult(400); // Bad request
+				HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+				return new JsonResult{ Data = "Already saved" };
 			}
 
 			return Json(picture);

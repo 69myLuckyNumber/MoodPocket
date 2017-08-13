@@ -16,10 +16,18 @@
                 <div class="background">
                     <img src="https://material.io/static/images/hub/gallery.svg">
                 </div>
-                <a href="#!name"><span class="name">@User.Identity.Name</span></a>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a href="#!name"><span class="name">@User.Identity.Name</span></a> 
+                }
             </div>
         </li>
+
         <li><a href="/Meme"><i class="material-icons waves-effect" style="margin-right: 23px;">dashboard</i>Browse Memes</a></li>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <li><a href="/Gallery"><i class="material-icons waves-effect" style="margin-right: 23px;">cloud_queue</i>Gallery</a></li>
+        }
         <li><div class="divider"></div></li>
         @if (User.Identity.IsAuthenticated)
         {
