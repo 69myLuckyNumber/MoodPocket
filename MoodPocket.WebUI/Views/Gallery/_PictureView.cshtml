@@ -6,9 +6,10 @@
             <img class="materialboxed" src="@Model.Url" />
         </div>
         <div class="card-content meme-card-content">
-            <a class="btn-floating halfway-fab waves-effect waves-light blue-grey lighten-4 meme-save-btn tooltipped save-meme" data-position="left" data-delay="50" data-tooltip="Save" type="submit">
-                <i class="material-icons " style="color: #666;">sentiment_very_satisfied</i>
-            </a>       
+            <a class="btn-floating halfway-fab waves-effect waves-light blue-grey lighten-4 meme-save-btn tooltipped delete-meme" data-position="left" data-delay="50" data-tooltip="Delete">
+                <i class="material-icons " style="color: #666;">delete</i>
+            </a>    
+            <input type="hidden" value="@Model.Url" id="meme-url" />
         </div>  
     </div>  
 </div>

@@ -31,6 +31,9 @@ namespace MoodPocket.WebUI
 				"~/Scripts/AccountScripts/entry.js"));
 			bundles.Add(new ScriptBundle("~/bundles/meme-scripts").Include(
 				"~/Scripts/MemeScripts/meme.js"));
+			bundles.Add(new ScriptBundle("~/bundles/gallery-scripts").Include(
+				"~/Scripts/GalleryScripts/gallery.js"));
+
 		}
 	}
 }

@@ -105,7 +105,7 @@ namespace MoodPocket.WebUI.Controllers
 				return new JsonResult{ Data = "Already saved" };
 			}
 
-			return Json(picture);
+			return new JsonResult() { Data = "Saved" };
 		}
 
 

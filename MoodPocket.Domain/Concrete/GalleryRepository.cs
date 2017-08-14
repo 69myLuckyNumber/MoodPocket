@@ -23,7 +23,19 @@ namespace MoodPocket.Domain.Concrete
 
 		public IQueryable<UserPicture> getAllPictures(int userId)
 		{
-			return _context.GalleryPictures.Where(g => g.Gallery.UserID == userId).Select(p => p.Picture) as IQueryable<UserPicture>;
+			return _context.GalleryPictures.Where(g => g.Gallery.UserID == userId).Select(p => p.Picture) 
+				as IQueryable<UserPicture>;
+		}
+
+		public void DeletePicture(string url)
+		{
+			GalleryPicture gp = _context.GalleryPictures.Where(p => p.Picture.Url == url).FirstOrDefault();
+			if (gp == null) throw new InvalidOperationException();
+			else
+			{
+				_context.GalleryPictures.Remove(gp);
+			}
+			
 		}
 
 		public UserGallery GetOrCreate(User user)

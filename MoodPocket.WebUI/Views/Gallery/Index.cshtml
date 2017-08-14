@@ -10,4 +10,12 @@
     }
 </div>
 
+@section scripts{
+    @Scripts.Render("~/bundles/gallery-scripts")
+    <script>
+        $(document).ready(function () {
+            initGalleryScripts("@Url.Action("DeleteMeme","Gallery")");
+        });
+    </script>
+}
 

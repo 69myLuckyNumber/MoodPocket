@@ -3,6 +3,7 @@ using MoodPocket.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -27,5 +28,21 @@ namespace MoodPocket.WebUI.Controllers
 
             return View(pictures);
         }
+
+		[HttpPost]
+		public ActionResult DeleteMeme(string url)
+		{
+			try
+			{
+				unitOfWork.GalleryRepository.DeletePicture(url);
+				unitOfWork.Commit();
+			}
+			catch (InvalidOperationException)
+			{
+				HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+				return new JsonResult { Data = "Already deleted" };
+			}
+			return new JsonResult { Data = "Deleted" };
+		}
     }
 }

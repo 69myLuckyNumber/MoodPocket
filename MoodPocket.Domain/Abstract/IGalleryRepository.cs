@@ -10,5 +10,7 @@ namespace MoodPocket.Domain.Abstract
 		UserGallery GetOrCreate(User user);
 
 		IQueryable<UserPicture> getAllPictures(int userId);
+
+		void DeletePicture(string url);
 	}
 }

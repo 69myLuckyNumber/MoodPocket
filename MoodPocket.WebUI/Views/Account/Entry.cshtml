@@ -41,7 +41,10 @@
 @section scripts{
     @Scripts.Render("~/bundles/account-scripts")
     <script>
-        initAccountScripts("@Url.Action("Register", "Account")", "@Url.Action("Login", "Account")",
+        $(document).ready(function (){
+             initAccountScripts("@Url.Action("Register", "Account")", "@Url.Action("Login", "Account")",
             "@Url.Action("Index","Home")", "@Url.Action("Entry", "Account")");
+        });
+
     </script>
     }

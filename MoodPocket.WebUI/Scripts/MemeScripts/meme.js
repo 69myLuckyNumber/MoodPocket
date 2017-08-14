@@ -4,7 +4,6 @@
         $(".preloader-wrapper").addClass('active');
         e.preventDefault();
         showMemes(showMemesUrl);
-        
     });
     $(window).scroll(function () {
         if ($(window).scrollTop() == $(document).height() - $(window).height()) {
@@ -43,7 +42,8 @@ function saveMeme(postUrl, imageUrl) {
         contentType: "application/json",
         data: JSON.stringify({ picture: meme }),
         success: function (response) {
-            Materialize.toast('Saved', 3000);
+
+            Materialize.toast(response, 3000);
         }
     });
 }
