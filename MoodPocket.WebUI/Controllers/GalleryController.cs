@@ -1,5 +1,6 @@
 ﻿using MoodPocket.Domain.Abstract;
 using MoodPocket.Domain.Entities;
+using MoodPocket.WebUI.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,7 @@ namespace MoodPocket.WebUI.Controllers
         }
 
 		[HttpPost]
+		[AjaxAuthorize]
 		public ActionResult DeleteMeme(string url)
 		{
 			try
