@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using MoodPocket.WebUI.Extensions;
+
 namespace MoodPocket.WebUI.Extensions
 {
 	public static class Extensions

@@ -9,7 +9,7 @@ namespace MoodPocket.Domain.Abstract
 	public interface IUnitOfWork : IDisposable
 	{
 		void Commit();
-		IGalleryPictureRepository GalleryPictureRepository { get;}
+		IGalleryPictureRepository GalleryPictureRepository { get; }
 		IPictureRepository PictureRepository { get; }
 		IUserRepository UserRepository { get; }
 		IGalleryRepository GalleryRepository { get; }

@@ -15,7 +15,7 @@ namespace MoodPocket.WebUI.Utilities
 
 			if(itemsList.IsNullOrEmpty())
 			{
-				itemsList = await getItemsCallback() as List<T>;
+				itemsList = await getItemsCallback();
 				HttpContext.Current.Session.Add(cacheKey, itemsList);
 				
 			}

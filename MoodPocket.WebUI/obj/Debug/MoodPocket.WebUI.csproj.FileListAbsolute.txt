@@ -78,3 +78,13 @@ D:\C#\Projects\Git\MoodPocket\MoodPocket.WebUI\bin\MoodPocket.Domain.pdb
 D:\C#\Projects\Git\MoodPocket\MoodPocket.WebUI\bin\MoodPocket.Domain.dll.config
 D:\C#\Projects\Git\MoodPocket\MoodPocket.WebUI\bin\Ninject.Web.Common.dll
 D:\C#\Projects\Git\MoodPocket\MoodPocket.WebUI\bin\Ninject.Web.Common.xml
+D:\C#\Projects\Git\MoodPocket\MoodPocket.WebUI\bin\System.Reactive.Core.dll
+D:\C#\Projects\Git\MoodPocket\MoodPocket.WebUI\bin\System.Reactive.Interfaces.dll
+D:\C#\Projects\Git\MoodPocket\MoodPocket.WebUI\bin\System.Reactive.Linq.dll
+D:\C#\Projects\Git\MoodPocket\MoodPocket.WebUI\bin\System.Reactive.PlatformServices.dll
+D:\C#\Projects\Git\MoodPocket\MoodPocket.WebUI\bin\System.Reactive.Windows.Threading.dll
+D:\C#\Projects\Git\MoodPocket\MoodPocket.WebUI\bin\System.Reactive.Core.xml
+D:\C#\Projects\Git\MoodPocket\MoodPocket.WebUI\bin\System.Reactive.Interfaces.xml
+D:\C#\Projects\Git\MoodPocket\MoodPocket.WebUI\bin\System.Reactive.Linq.xml
+D:\C#\Projects\Git\MoodPocket\MoodPocket.WebUI\bin\System.Reactive.PlatformServices.xml
+D:\C#\Projects\Git\MoodPocket\MoodPocket.WebUI\bin\System.Reactive.Windows.Threading.xml
