@@ -13,7 +13,7 @@ namespace MoodPocket.Domain.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201708101606053_Initial"; }
+            get { return "201708171604079_Initial"; }
         }
         
         string IMigrationMetadata.Source

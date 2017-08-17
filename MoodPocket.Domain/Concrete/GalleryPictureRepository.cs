@@ -23,13 +23,11 @@ namespace MoodPocket.Domain.Concrete
 			get	{ return _context.GalleryPictures; }
 		}
 
-		public void	Create(GalleryPicture galleryPicture)
+		public void	Create(Gallery gallery, Picture picture)
 		{
-			if(_context.GalleryPictures.FirstOrDefault(g=>g.GalleryID == galleryPicture.GalleryID && g.PictureID == galleryPicture.PictureID) == null)
+			if(_context.GalleryPictures.FirstOrDefault(g=>g.GalleryID == gallery.Id && g.PictureID == picture.Id) == null)
 			{
-				_context.GalleryPictures.Add(galleryPicture);
-				_context.Galleries.FirstOrDefault(g => g.GalleryID == galleryPicture.GalleryID).GalleryPictures.Add(galleryPicture);
-				_context.Pictures.FirstOrDefault(g => g.PictureID == galleryPicture.PictureID).GalleryPictures.Add(galleryPicture);
+				_context.GalleryPictures.Add(new GalleryPicture() { Gallery = gallery, Picture = picture });
 				return;
 			}
 			throw new InvalidOperationException();

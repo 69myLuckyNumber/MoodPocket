@@ -10,6 +10,7 @@
             showMemes(showMemesUrl);
         }
     });
+    
     $(document).on('click', '.save-meme',function (e) {
         e.preventDefault();
         var memeUrl = $(this).next('#meme-url').val();

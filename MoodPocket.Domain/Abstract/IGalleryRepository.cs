@@ -5,11 +5,11 @@ namespace MoodPocket.Domain.Abstract
 {
 	public interface IGalleryRepository
 	{
-		IQueryable<UserGallery> Galleries { get; }
+		IQueryable<Gallery> Galleries { get; }
 
-		UserGallery GetOrCreate(User user);
+		IQueryable<Picture> GetAllPictures(int userId);
 
-		IQueryable<UserPicture> getAllPictures(int userId);
+		Gallery GetOrCreate(User user);
 
 		void DeletePicture(string url);
 	}

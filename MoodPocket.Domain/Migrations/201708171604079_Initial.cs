@@ -8,16 +8,15 @@ namespace MoodPocket.Domain.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.UserGalleries",
+                "dbo.Galleries",
                 c => new
                     {
-                        GalleryID = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false),
                         Name = c.String(),
-                        UserID = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.GalleryID)
-                .ForeignKey("dbo.Users", t => t.UserID, cascadeDelete: true)
-                .Index(t => t.UserID);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Users", t => t.Id)
+                .Index(t => t.Id);
             
             CreateTable(
                 "dbo.GalleryPictures",
@@ -27,19 +26,19 @@ namespace MoodPocket.Domain.Migrations
                         PictureID = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => new { t.GalleryID, t.PictureID })
-                .ForeignKey("dbo.UserGalleries", t => t.GalleryID, cascadeDelete: true)
-                .ForeignKey("dbo.UserPictures", t => t.PictureID, cascadeDelete: true)
+                .ForeignKey("dbo.Galleries", t => t.GalleryID, cascadeDelete: true)
+                .ForeignKey("dbo.Pictures", t => t.PictureID, cascadeDelete: true)
                 .Index(t => t.GalleryID)
                 .Index(t => t.PictureID);
             
             CreateTable(
-                "dbo.UserPictures",
+                "dbo.Pictures",
                 c => new
                     {
-                        PictureID = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false, identity: true),
                         Url = c.String(),
                     })
-                .PrimaryKey(t => t.PictureID);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Users",
@@ -59,16 +58,16 @@ namespace MoodPocket.Domain.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.UserGalleries", "UserID", "dbo.Users");
-            DropForeignKey("dbo.GalleryPictures", "PictureID", "dbo.UserPictures");
-            DropForeignKey("dbo.GalleryPictures", "GalleryID", "dbo.UserGalleries");
+            DropForeignKey("dbo.Galleries", "Id", "dbo.Users");
+            DropForeignKey("dbo.GalleryPictures", "PictureID", "dbo.Pictures");
+            DropForeignKey("dbo.GalleryPictures", "GalleryID", "dbo.Galleries");
             DropIndex("dbo.GalleryPictures", new[] { "PictureID" });
             DropIndex("dbo.GalleryPictures", new[] { "GalleryID" });
-            DropIndex("dbo.UserGalleries", new[] { "UserID" });
+            DropIndex("dbo.Galleries", new[] { "Id" });
             DropTable("dbo.Users");
-            DropTable("dbo.UserPictures");
+            DropTable("dbo.Pictures");
             DropTable("dbo.GalleryPictures");
-            DropTable("dbo.UserGalleries");
+            DropTable("dbo.Galleries");
         }
     }
 }

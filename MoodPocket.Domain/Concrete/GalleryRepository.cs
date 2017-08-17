@@ -16,21 +16,24 @@ namespace MoodPocket.Domain.Concrete
 			_context = context;
 		}
 
-		public IQueryable<UserGallery> Galleries
+		public IQueryable<Gallery> Galleries
 		{
 			get { return _context.Galleries; }
 		}
 
-		public IQueryable<UserPicture> getAllPictures(int userId)
+		public IQueryable<Picture> GetAllPictures(int userId)
 		{
-			return _context.GalleryPictures.Where(g => g.Gallery.UserID == userId).Select(p => p.Picture) 
-				as IQueryable<UserPicture>;
+			return _context.GalleryPictures.Where(g => g.Gallery.Id == userId).Select(p => p.Picture) 
+				as IQueryable<Picture>;
 		}
 
 		public void DeletePicture(string url)
 		{
 			GalleryPicture gp = _context.GalleryPictures.Where(p => p.Picture.Url == url).FirstOrDefault();
-			if (gp == null) throw new InvalidOperationException();
+			if (gp == null)
+			{
+				throw new InvalidOperationException();
+			}
 			else
 			{
 				_context.GalleryPictures.Remove(gp);
@@ -38,22 +41,21 @@ namespace MoodPocket.Domain.Concrete
 			
 		}
 
-		public UserGallery GetOrCreate(User user)
+		public Gallery GetOrCreate(User user)
 		{
-			if (_context.Galleries.FirstOrDefault(g=>g.UserID == user.Id) == null)
+			if (user.Gallery == null)
 			{
-				UserGallery gallery = new UserGallery()
+				Gallery gallery = new Gallery()
 				{
 					GalleryPictures = new List<GalleryPicture>(),
 					User = user,
-					UserID = user.Id,
+					Id = user.Id,
 					Name = "My Gallery"
 				};
 				_context.Galleries.Add(gallery);
-				_context.Users.Find(user.Id).Galleries.Add(gallery);
 				_context.SaveChanges();
 			}
-			return _context.Users.FirstOrDefault(u => u.Id == user.Id).Galleries.ElementAt(0);
+			return user.Gallery;
 		}
 	}
 }

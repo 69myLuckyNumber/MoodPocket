@@ -8,7 +8,7 @@ namespace MoodPocket.Domain.Entities
 
 	public class User
 	{
-		[Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+		[Key]
 		public int Id { get; set; }
 
 		public string Username { get; set; }
@@ -23,6 +23,6 @@ namespace MoodPocket.Domain.Entities
 
 		public bool IsVerified { get; set; }
 
-		public virtual List<UserGallery> Galleries { get; set; }
+		public virtual Gallery Gallery { get; set; }
 	}
 }

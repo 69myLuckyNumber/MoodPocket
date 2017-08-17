@@ -9,4 +9,3 @@ D:\C#\Projects\Git\MoodPocket\MoodPocket.Domain\obj\Debug\MoodPocket.Domain.dll
 D:\C#\Projects\Git\MoodPocket\MoodPocket.Domain\obj\Debug\MoodPocket.Domain.pdb
 D:\C#\Projects\Git\MoodPocket\MoodPocket.Domain\obj\Debug\MoodPocket.Domain.Migrations.Initial.resources
 D:\C#\Projects\Git\MoodPocket\MoodPocket.Domain\obj\Debug\MoodPocket.Domain.csproj.GenerateResource.Cache
-D:\C#\Projects\Git\MoodPocket\MoodPocket.Domain\obj\Debug\MoodPocket.Domain.csprojResolveAssemblyReference.cache

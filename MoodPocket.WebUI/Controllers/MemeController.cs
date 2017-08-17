@@ -71,21 +71,12 @@ namespace MoodPocket.WebUI.Controllers
 		{
 			try
 			{
+				
 				User currentUser = unitOfWork.CurrentUserGetter.GetCurrentUser(HttpContext.User.Identity.Name);
-				UserGallery galleryDb = unitOfWork.GalleryRepository.GetOrCreate(currentUser);
-				UserPicture pictureDb = unitOfWork.PictureRepository.GetOrCreate(new UserPicture()
-				{
-					Url = picture.Url,
-					GalleryPictures = new List<GalleryPicture>()
-				});
+				Gallery galleryDb = unitOfWork.GalleryRepository.GetOrCreate(currentUser);
+				Picture pictureDb = unitOfWork.PictureRepository.GetOrCreate(picture.Url);
 
-				unitOfWork.GalleryPictureRepository.Create(new GalleryPicture()
-				{
-					Gallery = galleryDb,
-					GalleryID = galleryDb.GalleryID,
-					Picture = pictureDb,
-					PictureID = pictureDb.PictureID
-				});
+				unitOfWork.GalleryPictureRepository.Create(galleryDb, pictureDb);
 
 				unitOfWork.Commit();
 			}

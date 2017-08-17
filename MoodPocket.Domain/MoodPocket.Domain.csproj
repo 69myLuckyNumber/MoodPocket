@@ -60,12 +60,12 @@
     <Compile Include="Concrete\UserRepository.cs" />
     <Compile Include="Context\DatabaseContext.cs" />
     <Compile Include="Entities\GalleryPicture.cs" />
-    <Compile Include="Entities\UserPicture.cs" />
+    <Compile Include="Entities\Picture.cs" />
     <Compile Include="Entities\User.cs" />
-    <Compile Include="Entities\UserGallery.cs" />
-    <Compile Include="Migrations\201708101606053_Initial.cs" />
-    <Compile Include="Migrations\201708101606053_Initial.Designer.cs">
-      <DependentUpon>201708101606053_Initial.cs</DependentUpon>
+    <Compile Include="Entities\Gallery.cs" />
+    <Compile Include="Migrations\201708171604079_Initial.cs" />
+    <Compile Include="Migrations\201708171604079_Initial.Designer.cs">
+      <DependentUpon>201708171604079_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -75,8 +75,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201708101606053_Initial.resx">
-      <DependentUpon>201708101606053_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201708171604079_Initial.resx">
+      <DependentUpon>201708171604079_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -11,7 +11,7 @@ namespace MoodPocket.Domain.Abstract
 	{
 		IQueryable<GalleryPicture> GalleryPictures { get; }
 
-		void Create(GalleryPicture galleryPicture);
+		void Create(Gallery gallery, Picture picture);
 
 	}
 }

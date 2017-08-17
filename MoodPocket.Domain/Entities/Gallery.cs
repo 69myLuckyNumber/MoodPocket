@@ -4,13 +4,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MoodPocket.Domain.Entities
 {
-	public class UserPicture
+	public class Gallery
 	{
-		[Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-		public int PictureID { get; set; }
+		[Key, ForeignKey("User")]
+		public int Id { get; set; }
+		[Required]
+		public virtual User User { get; set; }
 
-		public string Url { get; set; }
+		public string Name { get; set; }
 
 		public virtual ICollection<GalleryPicture> GalleryPictures { get; set; }
 	}
+
 }

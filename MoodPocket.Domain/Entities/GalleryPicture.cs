@@ -11,8 +11,8 @@ namespace MoodPocket.Domain.Entities
 		[Key, Column(Order = 1)]
 		public int PictureID { get; set; }
 
-		public UserGallery Gallery { get; set; }
+		public Gallery Gallery { get; set; }
 
-		public UserPicture Picture { get; set; }
+		public Picture Picture { get; set; }
 	}
 }

@@ -25,7 +25,7 @@ namespace MoodPocket.WebUI.Controllers
         {
 			User currentUser = currentUser = unitOfWork.CurrentUserGetter
 				.GetCurrentUser(HttpContext.User.Identity.Name);
-			var pictures = unitOfWork.GalleryRepository.getAllPictures(currentUser.Id);
+			var pictures = unitOfWork.GalleryRepository.GetAllPictures(currentUser.Id);
 
             return View(pictures);
         }

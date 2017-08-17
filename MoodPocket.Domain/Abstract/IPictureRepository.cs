@@ -9,8 +9,8 @@ namespace MoodPocket.Domain.Abstract
 {
 	public interface IPictureRepository
 	{
-		IQueryable<UserPicture> Pictures { get; }
+		IQueryable<Picture> Pictures { get; }
 
-		UserPicture GetOrCreate(UserPicture picture);
+		Picture GetOrCreate(string url);
 	}
 }

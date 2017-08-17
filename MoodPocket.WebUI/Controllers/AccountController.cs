@@ -51,7 +51,7 @@ namespace MoodPocket.WebUI.Controllers
 					ConfirmPassword = hashedPassword,
 					Email = account.Email,
 					IsVerified = false,
-					Galleries = new List<UserGallery>()
+					Gallery = null
 				});
 				unitOfWork.Commit();
 				return Json(new { status = "ok" }, JsonRequestBehavior.AllowGet);

@@ -180,9 +180,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
-    <Content Include="App_Data\db1.mdf" />
-    <Content Include="App_Data\db1_log.ldf">
-      <DependentUpon>db1.mdf</DependentUpon>
+    <Content Include="App_Data\mpdb.mdf" />
+    <Content Include="App_Data\mpdb_log.ldf">
+      <DependentUpon>mpdb.mdf</DependentUpon>
     </Content>
     <Content Include="Content\materialize\css\materialize.css" />
     <Content Include="Content\materialize\css\materialize.min.css" />

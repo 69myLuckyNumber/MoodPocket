@@ -19,19 +19,19 @@ namespace MoodPocket.Domain.Concrete
 			_context = context;
 		}
 
-		public IQueryable<UserPicture> Pictures
+		public IQueryable<Picture> Pictures
 		{
 			get { return _context.Pictures; }
 		}
 
-		public UserPicture GetOrCreate(UserPicture picture)
+		public Picture GetOrCreate(string url)
 		{
-			if(_context.Pictures.FirstOrDefault(p=>p.Url == picture.Url) == null)
+			if(_context.Pictures.FirstOrDefault(p=>p.Url == url) == null)
 			{
-				_context.Pictures.Add(picture);
+				_context.Pictures.Add(new Picture() { Url = url, GalleryPictures = new List<GalleryPicture>() });
 				_context.SaveChanges();
 			}
-			return _context.Pictures.FirstOrDefault(p => p.Url == picture.Url);
+			return _context.Pictures.FirstOrDefault(p => p.Url == url);
 		}
 	}
 }
