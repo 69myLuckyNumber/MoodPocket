@@ -1,6 +1,7 @@
 ﻿using MoodPocket.Domain.Abstract;
 using MoodPocket.Domain.Entities;
 using MoodPocket.WebUI.Filters;
+using MoodPocket.WebUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,30 +22,36 @@ namespace MoodPocket.WebUI.Controllers
 		}
 
 		[HttpGet]
-        public ActionResult Index()
+		[Route("gallery/{username}")]
+        public ActionResult Details(string username)
         {
-			User currentUser = currentUser = unitOfWork.CurrentUserGetter
-				.GetCurrentUser(HttpContext.User.Identity.Name);
-			var pictures = unitOfWork.GalleryRepository.GetAllPictures(currentUser.Id);
+			User user = unitOfWork.UserRepository.Filter(username);
+			var pictures = unitOfWork.GalleryRepository.GetAllPictures(user.Id);
 
             return View(pictures);
         }
 
 		[HttpPost]
 		[AjaxAuthorize]
-		public ActionResult DeleteMeme(string url)
+		[Route("Gallery/DeleteMeme")]
+		public ActionResult DeleteMeme(PictureModel picture)
 		{
-			try
+			if(picture.HostedBy == HttpContext.User.Identity.Name)
 			{
-				unitOfWork.GalleryRepository.DeletePicture(url);
-				unitOfWork.Commit();
+				try
+				{
+					unitOfWork.GalleryRepository.DeletePicture(picture.Url);
+					unitOfWork.Commit();
+				}
+				catch (InvalidOperationException)
+				{
+					HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+					return new JsonResult { Data = "Already deleted" };
+				}
+				return new JsonResult { Data = "Deleted" };
 			}
-			catch (InvalidOperationException)
-			{
-				HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-				return new JsonResult { Data = "Already deleted" };
-			}
-			return new JsonResult { Data = "Deleted" };
+			HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+			return new JsonResult { Data = "Wrong access" };
 		}
     }
 }

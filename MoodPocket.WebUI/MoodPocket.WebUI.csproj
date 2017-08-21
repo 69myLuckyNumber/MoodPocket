@@ -167,7 +167,7 @@
     <Compile Include="Extensions\Extensions.cs" />
     <Compile Include="Filters\AjaxAuthorizeAttribute.cs" />
     <Compile Include="Filters\OnlyAnonymousAttribute.cs" />
-    <Compile Include="Filters\ValidateAjaxAttribute.cs" />
+    <Compile Include="Filters\AjaxValidateAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -240,6 +240,7 @@
     <Content Include="Content\materialize\fonts\roboto\Roboto-Bold.ttf" />
     <Content Include="Content\materialize\fonts\roboto\Roboto-Bold.eot" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
+    <Content Include="Scripts\ajax-notifications.js" />
     <Content Include="Scripts\GalleryScripts\gallery.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
@@ -271,7 +272,7 @@
     <Content Include="Views\Account\_RegisterFormView.cshtml" />
     <Content Include="Views\Account\_LoginFormView.cshtml" />
     <Content Include="Views\Meme\Index.cshtml" />
-    <Content Include="Views\Gallery\Index.cshtml" />
+    <Content Include="Views\Gallery\Details.cshtml" />
     <Content Include="Views\Gallery\_PictureView.cshtml" />
   </ItemGroup>
   <ItemGroup />

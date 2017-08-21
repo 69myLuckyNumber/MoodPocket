@@ -1,4 +1,4 @@
-﻿function initMemeScripts(showMemesUrl, saveMemeUrl) {
+﻿function initMemeScripts(currentUserName,showMemesUrl, saveMemeUrl) {
     $("#show-meme").on('click', function (e) {
         $("#show-meme").hide();
         $(".preloader-wrapper").addClass('active');
@@ -14,26 +14,13 @@
     $(document).on('click', '.save-meme',function (e) {
         e.preventDefault();
         var memeUrl = $(this).next('#meme-url').val();
-        saveMeme(saveMemeUrl, memeUrl);
-    });
-
-    $(document).ajaxError(function (e, xhr) {
-        if (xhr.status == 403) {
-            var response = $.parseJSON(xhr.responseText);
-            var $toastContent = $('<a class="btn-flat toast-login" style="color: #fffbfb;margin-left: 0rem;">Join us <i class="material-icons right">person_add</i></a>');
-            Materialize.toast($toastContent, 10000);
-            $(".toast-login").on('click', function (e) {
-                window.location = response.Url;
-            });
-        } else if (xhr.status == 400) {
-            var response = $.parseJSON(xhr.responseText);
-            Materialize.toast(response, 3000);
-        }
+        saveMeme(currentUserName,saveMemeUrl, memeUrl);
     });
 }
 
-function saveMeme(postUrl, imageUrl) {
+function saveMeme(currentUserName, postUrl, imageUrl) {
     var meme = {
+        HostedBy: currentUserName,
         Url: imageUrl
     };
 

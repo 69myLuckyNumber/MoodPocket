@@ -36,6 +36,7 @@ namespace MoodPocket.WebUI.Controllers
 
 		#region ImgurEndpointRegion
 		[HttpPost]
+		[Route("Meme/ShowMemes")]
 		public async Task<JsonResult> ShowMemes()
 		{
 			return Json(await cacheService.GetOrSet("Memes", async () => await GetMemesAsync()));
@@ -67,11 +68,11 @@ namespace MoodPocket.WebUI.Controllers
 		
 		[HttpPost]
 		[AjaxAuthorize]
+		[Route("Meme/SaveMeme")]
 		public ActionResult SaveMeme(PictureModel picture)
 		{
 			try
 			{
-				
 				User currentUser = unitOfWork.CurrentUserGetter.GetCurrentUser(HttpContext.User.Identity.Name);
 				Gallery galleryDb = unitOfWork.GalleryRepository.GetOrCreate(currentUser);
 				Picture pictureDb = unitOfWork.PictureRepository.GetOrCreate(picture.Url);

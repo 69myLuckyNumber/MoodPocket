@@ -3,27 +3,25 @@
         e.preventDefault();
         var memeUrl = $(this).next('#meme-url').val();
         var memeCard = $(this).closest("#meme-card");
-        deleteMeme(deleteUrl, memeUrl, memeCard);
+        var pathName = window.location.pathname;
+        var parts = pathName.split('/');
+        var hostUserName = parts[parts.length - 1];
+
+        deleteMeme(hostUserName, deleteUrl, memeUrl, memeCard);
     });
-    $(document).ajaxError(function (e, xhr) {
-        var response = $.parseJSON(xhr.responseText);
-        if (xhr.status == 400) {     
-            Materialize.toast(response, 3000);
-        } else if (xhr.status == 403) {
-            var $toastContent = $('<a class="btn-flat toast-login" style="color: #fffbfb;margin-left: 0rem;">Join us <i class="material-icons right">person_add</i></a>');
-            Materialize.toast($toastContent, 10000);
-            $(".toast-login").on('click', function (e) {
-                window.location = response.Url;
-            });
-        }
-    });
+    
 }
 
-function deleteMeme(postUrl, memeUrl, memeCard) {
+function deleteMeme(hostUserName, postUrl, memeUrl, memeCard) {
+    var meme = {
+        HostedBy: hostUserName,
+        Url: memeUrl
+    };
     $.ajax({
         url: postUrl,
         type: 'POST',
-        data: { url: memeUrl },
+        contentType: "application/json",
+        data: JSON.stringify({ picture: meme }),
         success: function (response) {
             memeCard.hide();
             Materialize.toast(response, 3000);

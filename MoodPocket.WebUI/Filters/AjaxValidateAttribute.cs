@@ -4,7 +4,7 @@ using System.Net;
 
 namespace MoodPocket.WebUI.Filters
 {
-	public class ValidateAjaxAttribute : ActionFilterAttribute
+	public class AjaxValidateAttribute : ActionFilterAttribute
 	{
 		public override void OnActionExecuting(ActionExecutingContext filterContext)
 		{

@@ -24,7 +24,7 @@
     @Scripts.Render("~/bundles/meme-scripts")
     <script>
         $(document).ready(function () {
-            initMemeScripts("@Url.Action("ShowMemes", "Meme")", "@Url.Action("SaveMeme","Meme")");
+            initMemeScripts("@User.Identity.Name","@Url.Action("ShowMemes", "Meme")", "@Url.Action("SaveMeme","Meme")");
         });
 
     </script>

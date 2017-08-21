@@ -33,7 +33,8 @@ namespace MoodPocket.WebUI
 				"~/Scripts/MemeScripts/meme.js"));
 			bundles.Add(new ScriptBundle("~/bundles/gallery-scripts").Include(
 				"~/Scripts/GalleryScripts/gallery.js"));
-
+			bundles.Add(new ScriptBundle("~/bundles/ajax-notifications-scripts").Include(
+				"~/Scripts/ajax-notifications.js"));
 		}
 	}
 }
