@@ -9,3 +9,15 @@ D:\C#\Projects\Git\MoodPocket\MoodPocket.Domain\obj\Debug\MoodPocket.Domain.dll
 D:\C#\Projects\Git\MoodPocket\MoodPocket.Domain\obj\Debug\MoodPocket.Domain.pdb
 D:\C#\Projects\Git\MoodPocket\MoodPocket.Domain\obj\Debug\MoodPocket.Domain.Migrations.Initial.resources
 D:\C#\Projects\Git\MoodPocket\MoodPocket.Domain\obj\Debug\MoodPocket.Domain.csproj.GenerateResource.Cache
+D:\Projects\MoodPocket\MoodPocket\MoodPocket.Domain\bin\Debug\MoodPocket.Domain.dll.config
+D:\Projects\MoodPocket\MoodPocket\MoodPocket.Domain\bin\Debug\MoodPocket.Domain.dll
+D:\Projects\MoodPocket\MoodPocket\MoodPocket.Domain\bin\Debug\MoodPocket.Domain.pdb
+D:\Projects\MoodPocket\MoodPocket\MoodPocket.Domain\bin\Debug\EntityFramework.dll
+D:\Projects\MoodPocket\MoodPocket\MoodPocket.Domain\bin\Debug\EntityFramework.SqlServer.dll
+D:\Projects\MoodPocket\MoodPocket\MoodPocket.Domain\bin\Debug\EntityFramework.xml
+D:\Projects\MoodPocket\MoodPocket\MoodPocket.Domain\bin\Debug\EntityFramework.SqlServer.xml
+D:\Projects\MoodPocket\MoodPocket\MoodPocket.Domain\obj\Debug\MoodPocket.Domain.Migrations.Initial.resources
+D:\Projects\MoodPocket\MoodPocket\MoodPocket.Domain\obj\Debug\MoodPocket.Domain.csproj.GenerateResource.Cache
+D:\Projects\MoodPocket\MoodPocket\MoodPocket.Domain\obj\Debug\MoodPocket.Domain.csproj.CoreCompileInputs.cache
+D:\Projects\MoodPocket\MoodPocket\MoodPocket.Domain\obj\Debug\MoodPocket.Domain.dll
+D:\Projects\MoodPocket\MoodPocket\MoodPocket.Domain\obj\Debug\MoodPocket.Domain.pdb
