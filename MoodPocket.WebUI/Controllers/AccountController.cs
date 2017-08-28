@@ -56,7 +56,7 @@ namespace MoodPocket.WebUI.Controllers
 					Gallery = null
 				});
 				unitOfWork.Commit();
-				return Json(new { status = "ok" }, JsonRequestBehavior.AllowGet);
+                return new JsonResult() { Data = "Signed-up"};
 			}
 			return Json(new { status = "error" }, JsonRequestBehavior.AllowGet);
 		}
@@ -83,7 +83,8 @@ namespace MoodPocket.WebUI.Controllers
 					if(PasswordHelperUtility.ValidatePassword(model.Password, user.Password, user.Salt))
 					{
 						FormsAuthentication.SetAuthCookie(model.Username, model.RememberMe);
-						return Json(new { status = "ok" }, JsonRequestBehavior.AllowGet);
+                        HttpContext.Response.StatusCode = (int)HttpStatusCode.OK;
+                        return new JsonResult() { Data = "Logged-in" };
 					}
 				}
 			}

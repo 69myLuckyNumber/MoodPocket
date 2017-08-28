@@ -20,6 +20,7 @@ function loginOrRegister(form, url, redirectUrl, prefix) {
         type: "POST",
         data: formData,
         success: function (data) {
+            Materialize.toast(data, 1500);
             window.location.replace(redirectUrl);
         },
         error: function (xhr) {
