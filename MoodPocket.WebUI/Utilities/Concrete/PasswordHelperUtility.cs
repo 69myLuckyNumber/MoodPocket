@@ -24,9 +24,6 @@ namespace MoodPocket.WebUI.Utilities
 		}
 		public static bool ValidatePassword(string enteredPassword, string storedHash, string storedSalt)
 		{
-			// Consider this function as an internal function where parameters like
-			// storedHash and storedSalt are read from the database and then passed.
-
 			var hash = HashPassword(enteredPassword, storedSalt);
 			return string.Equals(storedHash, hash);
 		}

@@ -51,12 +51,10 @@
     <Compile Include="Abstract\IGalleryRepository.cs" />
     <Compile Include="Abstract\IGetsCurrentUser.cs" />
     <Compile Include="Abstract\IPictureRepository.cs" />
-    <Compile Include="Abstract\IUnitOfWork.cs" />
     <Compile Include="Abstract\IUserRepository.cs" />
     <Compile Include="Concrete\GalleryPictureRepository.cs" />
     <Compile Include="Concrete\GalleryRepository.cs" />
     <Compile Include="Concrete\PictureRepository.cs" />
-    <Compile Include="Concrete\UnitOfWork.cs" />
     <Compile Include="Concrete\UserRepository.cs" />
     <Compile Include="Context\DatabaseContext.cs" />
     <Compile Include="Entities\GalleryPicture.cs" />

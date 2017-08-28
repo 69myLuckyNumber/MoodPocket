@@ -87,7 +87,7 @@ namespace MoodPocket.WebUI.Controllers
 					}
 				}
 			}
-			HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+			HttpContext.Response.StatusCode = (int)HttpStatusCode.Forbidden;
 			ModelState.AddModelError("Username", "Invalid credentials");
 			var errors = from field in ModelState.Keys
 						 where ModelState[field].Errors.Count > 0

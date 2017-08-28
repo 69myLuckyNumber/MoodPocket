@@ -26,8 +26,8 @@ namespace MoodPocket.WebUI.Filters
 									 };
 
 					filterContext.Result = new JsonResult() { Data = errorModel };
+					filterContext.HttpContext.Response.StatusCode = (int)HttpStatusCode.Forbidden;
 
-					filterContext.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
 				}
 			}
 		}

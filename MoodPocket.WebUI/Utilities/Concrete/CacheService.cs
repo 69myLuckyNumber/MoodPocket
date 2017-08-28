@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using MoodPocket.WebUI.Extensions;
 using System.Threading.Tasks;
 using System.Web;
+using MoodPocket.WebUI.Utilities.Abstract;
 
 namespace MoodPocket.WebUI.Utilities
 {
@@ -20,12 +21,6 @@ namespace MoodPocket.WebUI.Utilities
 				
 			}
 			return itemsList.TakeAndRemove(25);
-		}
-
-		
-	}
-	public interface ICacheService
-	{
-		Task<List<T>> GetOrSet<T>(string chacheKey, Func<Task<List<T>>> getItemsCallback) where T : class;
+		}	
 	}
 }

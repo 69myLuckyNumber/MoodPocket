@@ -17,7 +17,7 @@ namespace MoodPocket.WebUI.Filters
 				{
 					var urlHelper = new UrlHelper(filterContext.RequestContext);
 					filterContext.HttpContext.Response.SuppressFormsAuthenticati‌​onRedirect = true;
-					filterContext.HttpContext.Response.StatusCode = (int)HttpStatusCode.Forbidden; // 403
+					filterContext.HttpContext.Response.StatusCode = (int)HttpStatusCode.Unauthorized; // 401
 					filterContext.Result = new JsonResult()
 					{
 						Data = new

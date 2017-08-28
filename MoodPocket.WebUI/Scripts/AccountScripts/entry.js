@@ -20,13 +20,13 @@ function loginOrRegister(form, url, redirectUrl, prefix) {
         type: "POST",
         data: formData,
         success: function (data) {
-            window.location.replace(redirectUrl)
+            window.location.replace(redirectUrl);
         },
         error: function (xhr) {
             errorFields.empty();
             var jsonErrorBundle = $.parseJSON(xhr.responseText);
             for (var i = 0; i < jsonErrorBundle.length; i++) {
-                var field = jsonErrorBundle[i]
+                var field = jsonErrorBundle[i];
                 var error = field.errors[0];
                 $("span[data-valmsg-for=" + field.key + "]", form).toggleClass("field-validation-valid field-validation-error")
                     .append('<span for="' + field.key + '" class="error'+prefix+'">' + error + '</span>');
