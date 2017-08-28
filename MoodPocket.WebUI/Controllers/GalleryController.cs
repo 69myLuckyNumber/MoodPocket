@@ -26,6 +26,11 @@ namespace MoodPocket.WebUI.Controllers
         public ActionResult Details(string username)
         {
 			User user = unitOfWork.UserRepository.Filter(username);
+            if(user == null)
+            {
+                HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return View("Error");
+            }
 			var pictures = unitOfWork.GalleryRepository.GetAllPictures(user.Id);
 
             return View(pictures);

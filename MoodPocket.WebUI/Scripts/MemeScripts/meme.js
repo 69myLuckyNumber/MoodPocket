@@ -42,7 +42,7 @@ function showMemes(url) {
         type: 'POST',
         success: function (response) {
             $.each(response, function (index, item) {
-                var memeCard = '<div class="col m4" id="meme-card">' +
+                var memeCard = '<div class="col s4" id="meme-card">' +
                     '<div class="card hoverable">' +
                     '<div class="card-image">' +
                     '<img class="materialboxed" src="' + item.Link + '" />' +
