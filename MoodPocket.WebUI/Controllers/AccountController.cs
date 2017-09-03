@@ -38,7 +38,6 @@ namespace MoodPocket.WebUI.Controllers
 		[AjaxValidate]
 		[OnlyAnonymous]
 		[ValidateAntiForgeryToken]
-		[Route("Account/Register")]
 		public JsonResult Register(RegisterModel account)
 		{
 			if (ModelState.IsValid)
@@ -56,6 +55,7 @@ namespace MoodPocket.WebUI.Controllers
 					Gallery = null
 				});
 				unitOfWork.Commit();
+             
                 return new JsonResult() { Data = "Signed-up"};
 			}
 			return Json(new { status = "error" }, JsonRequestBehavior.AllowGet);
@@ -72,7 +72,6 @@ namespace MoodPocket.WebUI.Controllers
 		[AjaxValidate]
 		[OnlyAnonymous]
 		[ValidateAntiForgeryToken]
-		[Route("Account/Login")]
 		public JsonResult Login(LoginModel model)
 		{
 			if (ModelState.IsValid)
@@ -104,7 +103,6 @@ namespace MoodPocket.WebUI.Controllers
 		}
 
 		[Authorize]
-		[Route("Account/LogOut")]
 		public ActionResult LogOut()
 		{
 			FormsAuthentication.SignOut();

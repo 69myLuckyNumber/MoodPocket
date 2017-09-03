@@ -20,8 +20,7 @@ namespace MoodPocket.WebUI.Controllers
 			unitOfWork = uow;
 			
 		}
-
-		[HttpGet]
+        [HttpGet]
 		[Route("gallery/{username}")]
         public ActionResult Details(string username)
         {
@@ -38,7 +37,7 @@ namespace MoodPocket.WebUI.Controllers
 
 		[HttpPost]
 		[AjaxAuthorize]
-		[Route("Gallery/DeleteMeme")]
+        [Route("Gallery/DeleteMeme")]
 		public ActionResult DeleteMeme(PictureModel picture)
 		{
 			if(picture.HostedBy == HttpContext.User.Identity.Name)

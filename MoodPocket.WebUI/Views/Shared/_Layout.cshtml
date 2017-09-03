@@ -26,7 +26,7 @@
         <li><a href="/Meme"><i class="material-icons waves-effect" style="margin-right: 23px;">dashboard</i>Browse Memes</a></li>
         @if (User.Identity.IsAuthenticated)
         {
-            <li><a href="/Gallery/@User.Identity.Name"><i class="material-icons waves-effect" style="margin-right: 23px;">cloud_queue</i>Gallery</a></li>
+            <li><a href="/gallery/@User.Identity.Name"><i class="material-icons waves-effect" style="margin-right: 23px;">cloud_queue</i>Gallery</a></li>
         }
         <li><div class="divider"></div></li>
         @if (User.Identity.IsAuthenticated)
