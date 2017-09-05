@@ -10,6 +10,7 @@ using System.Net;
 using System.Linq;
 using System.Collections.Generic;
 using MoodPocket.WebUI.Utilities.Abstract;
+using System;
 
 namespace MoodPocket.WebUI.Controllers
 {
@@ -46,21 +47,28 @@ namespace MoodPocket.WebUI.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				string salt = stringHashService.GetRandomSalt();
-				string hashedPassword = stringHashService.HashString(account.Password, salt);
-				unitOfWork.UserRepository.CreateUser(new User()
-				{
-					Username = account.Username,
-					Salt = salt,
-					Password = hashedPassword,
-					ConfirmPassword = hashedPassword,
-					Email = account.Email,
-					IsVerified = false,
-					Gallery = null
-				});
-				unitOfWork.Commit();
-                emailSendService.SendVerificationLink(account.Username, account.Email);
-                return new JsonResult() { Data = "Signed-up"};
+                try
+                {
+                    string salt = stringHashService.GetRandomSalt();
+                    string hashedPassword = stringHashService.HashString(account.Password, salt);
+                    unitOfWork.UserRepository.CreateUser(new User()
+                    {
+                        Username = account.Username,
+                        Salt = salt,
+                        Password = hashedPassword,
+                        ConfirmPassword = hashedPassword,
+                        Email = account.Email,
+                        IsVerified = false,
+                        Gallery = null
+                    });
+                    unitOfWork.Commit();
+                    emailSendService.SendVerificationLink(account.Username, account.Email);
+                    return new JsonResult() { Data = "Signed-up" };
+                }
+                catch (InvalidOperationException)
+                {
+                    HttpContext.Response.StatusCode = (int)HttpStatusCode.Forbidden;
+                }
 			}
 			return Json(new { status = "error" }, JsonRequestBehavior.AllowGet);
 		}

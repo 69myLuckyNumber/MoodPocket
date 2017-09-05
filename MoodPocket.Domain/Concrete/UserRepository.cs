@@ -28,7 +28,15 @@ namespace MoodPocket.Domain.Concrete
 
 		public void CreateUser(User user)
 		{
-			_context.Users.Add(user);
+            if(Filter(user.Username, user.Email) == null)
+            {
+                _context.Users.Add(user);
+            }
+            else
+            {
+                throw new InvalidOperationException();
+            }
+			
 		}
 
 		public User Get(int id)

@@ -11,10 +11,6 @@ body {
 body {
     width: 100%;
 }
-#meme-card {
-    margin: 0;
-    padding: 0;
-}
 .meme-card-content{
     position:relative;
 }

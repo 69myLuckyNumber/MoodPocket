@@ -10,37 +10,41 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <ul id="slide-out" class="side-nav fixed">
-        <li>
-            <div class="user-view">
-                <div class="background">
-                    <img src="https://material.io/static/images/hub/gallery.svg">
-                </div>
+    <div class="row">
+        <div class="col s2">
+            <ul id="slide-out" class="side-nav fixed">
+                <li>
+                    <div class="user-view">
+                        <div class="background">
+                            <img src="https://material.io/static/images/hub/gallery.svg">
+                        </div>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a href="#!name"><span class="name">@User.Identity.Name</span></a>
+                        }
+                    </div>
+                </li>
+
+                <li><a href="/Meme"><i class="material-icons waves-effect" style="margin-right: 23px;">dashboard</i>Browse Memes</a></li>
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <a href="#!name"><span class="name">@User.Identity.Name</span></a> 
+                    <li><a href="/gallery/@User.Identity.Name"><i class="material-icons waves-effect" style="margin-right: 23px;">cloud_queue</i>Gallery</a></li>
                 }
-            </div>
-        </li>
-
-        <li><a href="/Meme"><i class="material-icons waves-effect" style="margin-right: 23px;">dashboard</i>Browse Memes</a></li>
-        @if (User.Identity.IsAuthenticated)
-        {
-            <li><a href="/gallery/@User.Identity.Name"><i class="material-icons waves-effect" style="margin-right: 23px;">cloud_queue</i>Gallery</a></li>
-        }
-        <li><div class="divider"></div></li>
-        @if (User.Identity.IsAuthenticated)
-        {
-            <li>@Html.RouteLink("Sign out", new { controller = "Account", action = "LogOut" , @class="waves-effect"})</li>
-        }
-        else
-        {
-            <li>@Html.RouteLink("Join us", new { controller = "Account", action = "Entry", @class = "waves-effect" })</li>
-        }
-    </ul>
-    <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
-    <div class="container">
-        @RenderBody()
+                <li><div class="divider"></div></li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li>@Html.RouteLink("Sign out", new { controller = "Account", action = "LogOut", @class = "waves-effect" })</li>
+                }
+                else
+                {
+                    <li>@Html.RouteLink("Join us", new { controller = "Account", action = "Entry", @class = "waves-effect" })</li>
+                }
+            </ul>
+            <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+        </div>
+        <div class="col s10">
+            @RenderBody()
+        </div>
     </div>
 
     @Scripts.Render("~/bundles/jquery")

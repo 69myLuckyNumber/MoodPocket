@@ -76,7 +76,6 @@ namespace MoodPocket.WebUI.Controllers
 				Picture pictureDb = unitOfWork.PictureRepository.GetOrCreate(picture.Url);
 
 				unitOfWork.GalleryPictureRepository.Create(galleryDb, pictureDb);
-
 				unitOfWork.Commit();
 			}
 			catch (InvalidOperationException)

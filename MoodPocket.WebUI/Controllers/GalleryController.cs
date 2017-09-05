@@ -53,9 +53,12 @@ namespace MoodPocket.WebUI.Controllers
 					return new JsonResult { Data = "Already deleted" };
 				}
 				return new JsonResult { Data = "Deleted" };
-			}
-			HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-			return new JsonResult { Data = "Wrong access" };
+            }
+            else
+            {
+                HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return new JsonResult { Data = "Wrong access" };
+            }
 		}
     }
 }
