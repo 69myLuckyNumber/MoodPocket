@@ -55,6 +55,12 @@
     <Reference Include="Imgur.API, Version=4.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Imgur.API.4.0.1\lib\net45\Imgur.API.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -173,6 +179,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\NinjectConrollerFactory.cs" />
+    <Compile Include="Utilities\Abstract\IEmailSender.cs" />
+    <Compile Include="Utilities\Abstract\IStringHasher.cs" />
+    <Compile Include="Utilities\Concrete\EmailSenderService.cs" />
+    <Compile Include="Utilities\Concrete\StringHashService.cs" />
     <Compile Include="Utilities\Concrete\UnitOfWork.cs" />
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\PictureModel.cs" />
@@ -180,7 +190,6 @@
     <Compile Include="Utilities\Abstract\ICacheService.cs" />
     <Compile Include="Utilities\Abstract\IUnitOfWork.cs" />
     <Compile Include="Utilities\Concrete\CacheService.cs" />
-    <Compile Include="Utilities\Concrete\PasswordHelperUtility.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
@@ -278,6 +287,7 @@
     <Content Include="Views\Meme\Index.cshtml" />
     <Content Include="Views\Gallery\Details.cshtml" />
     <Content Include="Views\Gallery\_PictureView.cshtml" />
+    <Content Include="Views\Account\VerifyAccount.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

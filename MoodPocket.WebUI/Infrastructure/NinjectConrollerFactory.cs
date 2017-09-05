@@ -1,6 +1,5 @@
 ﻿using MoodPocket.Domain.Abstract;
 using MoodPocket.Domain.Concrete;
-using MoodPocket.WebUI.Utilities;
 
 using System;
 using System.Web.Mvc;
@@ -8,6 +7,7 @@ using System.Web.Routing;
 using Ninject;
 using Ninject.Web.Common;
 using MoodPocket.WebUI.Utilities.Abstract;
+using MoodPocket.WebUI.Utilities.Concrete;
 
 namespace MoodPocket.WebUI.Infrastructure
 {
@@ -30,6 +30,8 @@ namespace MoodPocket.WebUI.Infrastructure
 		{
 			ninjectKernel.Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
 			ninjectKernel.Bind<ICacheService>().To<CacheService>();
+            ninjectKernel.Bind<IStringHasher>().To<StringHashService>();
+            ninjectKernel.Bind<IEmailSender>().To<EmailSenderService>();
 		}
 	}
 }

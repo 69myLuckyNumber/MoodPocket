@@ -1,8 +1,9 @@
 ﻿using MoodPocket.Domain.Abstract;
+using MoodPocket.Domain.Concrete;
 using MoodPocket.Domain.Context;
 using System;
 
-namespace MoodPocket.Domain.Concrete
+namespace MoodPocket.WebUI.Utilities.Concrete
 {
 	public class UnitOfWork : IUnitOfWork
 	{

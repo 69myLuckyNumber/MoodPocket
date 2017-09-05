@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Web;
 using MoodPocket.WebUI.Utilities.Abstract;
 
-namespace MoodPocket.WebUI.Utilities
+namespace MoodPocket.WebUI.Utilities.Concrete
 {
 	public class CacheService : ICacheService
 	{

@@ -9,16 +9,20 @@ using System.Web.Security;
 using System.Net;
 using System.Linq;
 using System.Collections.Generic;
+using MoodPocket.WebUI.Utilities.Abstract;
 
 namespace MoodPocket.WebUI.Controllers
 {
 	public class AccountController : Controller
 	{
 		private IUnitOfWork unitOfWork;
-
-		public AccountController(IUnitOfWork uow)
+        private IStringHasher stringHashService;
+        private IEmailSender emailSendService;
+		public AccountController(IUnitOfWork uow, IStringHasher strHasher, IEmailSender emailSender)
 		{
 			unitOfWork = uow;
+            stringHashService = strHasher;
+            emailSendService = emailSender;
 		}
 
 		[HttpGet]
@@ -42,8 +46,8 @@ namespace MoodPocket.WebUI.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				string salt = PasswordHelperUtility.GetRandomSalt();
-				string hashedPassword = PasswordHelperUtility.HashPassword(account.Password, salt);
+				string salt = stringHashService.GetRandomSalt();
+				string hashedPassword = stringHashService.HashString(account.Password, salt);
 				unitOfWork.UserRepository.CreateUser(new User()
 				{
 					Username = account.Username,
@@ -55,7 +59,7 @@ namespace MoodPocket.WebUI.Controllers
 					Gallery = null
 				});
 				unitOfWork.Commit();
-             
+                emailSendService.SendVerificationLink(account.Username, account.Email);
                 return new JsonResult() { Data = "Signed-up"};
 			}
 			return Json(new { status = "error" }, JsonRequestBehavior.AllowGet);
@@ -79,7 +83,7 @@ namespace MoodPocket.WebUI.Controllers
 				User user = unitOfWork.UserRepository.Filter(model.Username);
 				if(user != null)
 				{
-					if(PasswordHelperUtility.ValidatePassword(model.Password, user.Password, user.Salt))
+					if(stringHashService.ValidateHashedString(model.Password, user.Password, user.Salt))
 					{
 						FormsAuthentication.SetAuthCookie(model.Username, model.RememberMe);
                         HttpContext.Response.StatusCode = (int)HttpStatusCode.OK;
@@ -108,6 +112,21 @@ namespace MoodPocket.WebUI.Controllers
 			FormsAuthentication.SignOut();
 			return RedirectToAction("Entry");
 		}
-
+        [Route("Account/VerifyAccount/{username}/{salt}/{activationCode}")]
+        public ActionResult VerifyAccount(string username, string salt, string activationCode)
+        {
+            User user = unitOfWork.UserRepository.Filter(username);
+            if (user != null && stringHashService.ValidateHashedString(username, activationCode, salt))
+            {
+                user.IsVerified = true;
+                unitOfWork.Commit();
+                return View("VerifyAccount", (object)username);
+            }
+            else
+            {
+                HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return View("Error");
+            }
+        }
 	}
 }
