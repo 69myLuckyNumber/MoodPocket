@@ -20,8 +20,11 @@ function loginOrRegister(form, url, redirectUrl, prefix) {
         type: "POST",
         data: formData,
         success: function (data) {
-            Materialize.toast(data, 1500);
-            window.location.replace(redirectUrl);
+            Materialize.toast(data, 2000);
+            setTimeout(function () {
+                window.location.replace(redirectUrl);
+            }, 2000)
+            
         },
         error: function (xhr) {
             errorFields.empty();

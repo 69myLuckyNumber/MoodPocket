@@ -63,7 +63,7 @@ namespace MoodPocket.WebUI.Controllers
                     });
                     unitOfWork.Commit();
                     emailSendService.SendVerificationLink(account.Username, account.Email);
-                    return new JsonResult() { Data = "Signed-up" };
+                    return new JsonResult() { Data = "Confirmation email has been sent" };
                 }
                 catch (InvalidOperationException)
                 {
@@ -95,7 +95,7 @@ namespace MoodPocket.WebUI.Controllers
 					{
 						FormsAuthentication.SetAuthCookie(model.Username, model.RememberMe);
                         HttpContext.Response.StatusCode = (int)HttpStatusCode.OK;
-                        return new JsonResult() { Data = "Logged-in" };
+                        return new JsonResult() { Data = "Redirecting..." };
 					}
 				}
 			}
