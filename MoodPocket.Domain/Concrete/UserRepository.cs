@@ -22,7 +22,7 @@ namespace MoodPocket.Domain.Concrete
 		{
 			get
 			{
-				return _context.Users;
+                return _context.Users;
 			}
 		}
 
@@ -70,5 +70,10 @@ namespace MoodPocket.Domain.Concrete
 		{
 			return Filter(name);
 		}
-	}
+
+        public IQueryable<User> GetAllUsersWithMemes()
+        {
+            return _context.Users.Where(u => u.Gallery.GalleryPictures.Count > 0);
+        }
+    }
 }

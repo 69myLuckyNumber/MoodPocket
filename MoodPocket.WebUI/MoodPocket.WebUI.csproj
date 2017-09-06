@@ -179,6 +179,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\NinjectConrollerFactory.cs" />
+    <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Utilities\Abstract\IEmailSender.cs" />
     <Compile Include="Utilities\Abstract\IStringHasher.cs" />
     <Compile Include="Utilities\Concrete\EmailSenderService.cs" />
@@ -288,6 +289,7 @@
     <Content Include="Views\Gallery\Details.cshtml" />
     <Content Include="Views\Gallery\_PictureView.cshtml" />
     <Content Include="Views\Account\VerifyAccount.cshtml" />
+    <Content Include="Views\Home\_UserCardView.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

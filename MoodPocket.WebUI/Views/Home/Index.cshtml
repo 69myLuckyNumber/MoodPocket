@@ -1,3 +1,9 @@
-﻿@{
+﻿@model MoodPocket.WebUI.Models.HomeViewModel
+@{
     ViewBag.Title = "Home Page";
+}
+<h3>Active users:</h3>
+@foreach(var user in Model.UserCards)
+{
+    @Html.Partial("_UserCardView", user)
 }

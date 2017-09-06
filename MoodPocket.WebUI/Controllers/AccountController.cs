@@ -124,7 +124,7 @@ namespace MoodPocket.WebUI.Controllers
         public ActionResult VerifyAccount(string username, string salt, string activationCode)
         {
             User user = unitOfWork.UserRepository.Filter(username);
-            if (user != null && stringHashService.ValidateHashedString(username, activationCode, salt))
+            if (user != null && !user.IsVerified && stringHashService.ValidateHashedString(username, activationCode, salt))
             {
                 user.IsVerified = true;
                 unitOfWork.Commit();

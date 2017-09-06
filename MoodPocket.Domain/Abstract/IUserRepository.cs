@@ -14,5 +14,7 @@ namespace MoodPocket.Domain.Abstract
 
 		void CreateUser(User user);
 
+        IQueryable<User> GetAllUsersWithMemes();
+
 	}
 }
