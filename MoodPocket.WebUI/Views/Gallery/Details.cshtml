@@ -1,20 +1,21 @@
-﻿@model IQueryable<MoodPocket.Domain.Entities.Picture>
-
+﻿@model MoodPocket.WebUI.Models.GalleryViewModel
 @{
     ViewBag.Title = "Details";
 }
 <div class="row">
-    @foreach (var picture in Model)
+    @foreach (var picture in Model.Pictures)
     {
-        @Html.Partial("_PictureView", picture)
+        @Html.Partial("_PictureView", picture, new ViewDataDictionary { { "HostedBy", Model.HostedBy } })
     }
 </div>
 
 @section scripts{
     @Scripts.Render("~/bundles/gallery-scripts")
+    @Scripts.Render("~/bundles/meme-scripts")
     <script>
         $(document).ready(function () {
             initGalleryScripts("@Url.Action("DeleteMeme","Gallery")");
+            initMemeScripts("@User.Identity.Name","@Url.Action("ShowMemes", "Meme")", "@Url.Action("SaveMeme","Meme")");
         });
     </script>
 }

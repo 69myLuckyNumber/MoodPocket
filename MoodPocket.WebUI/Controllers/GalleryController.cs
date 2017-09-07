@@ -30,9 +30,12 @@ namespace MoodPocket.WebUI.Controllers
                 HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return View("Error");
             }
-			var pictures = unitOfWork.GalleryRepository.GetAllPictures(user.Id);
-
-            return View(pictures);
+            GalleryViewModel model = new GalleryViewModel()
+            {
+                Pictures = unitOfWork.GalleryRepository.GetAllPictures(user.Id),
+                HostedBy = username
+            }; 
+            return View(model);
         }
 
 		[HttpPost]

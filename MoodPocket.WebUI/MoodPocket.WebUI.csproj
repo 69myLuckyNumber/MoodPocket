@@ -179,6 +179,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\NinjectConrollerFactory.cs" />
+    <Compile Include="Models\GalleryViewModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Utilities\Abstract\IEmailSender.cs" />
     <Compile Include="Utilities\Abstract\IStringHasher.cs" />

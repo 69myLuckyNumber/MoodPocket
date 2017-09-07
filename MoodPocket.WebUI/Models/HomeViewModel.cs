@@ -8,7 +8,7 @@ namespace MoodPocket.WebUI.Models
 {
     public class HomeViewModel
     {
-        public IEnumerable<UserCard > UserCards { get; set; }
+        public IEnumerable<UserCard> UserCards { get; set; }
     }
 
     public class UserCard

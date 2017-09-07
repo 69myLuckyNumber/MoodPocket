@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace MoodPocket.WebUI.Extensions
 {
-	public static class Extensions
+	public static class ListExtensions
 	{
 		#region Extension methods for List
 		/// <summary>
@@ -59,5 +59,6 @@ namespace MoodPocket.WebUI.Extensions
 			return source.Take(count);
 		}
 		#endregion
+
 	}
 }
