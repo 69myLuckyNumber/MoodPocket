@@ -86,33 +86,41 @@ namespace MoodPocket.WebUI.Controllers
 		[ValidateAntiForgeryToken]
 		public JsonResult Login(LoginModel model)
 		{
-			if (ModelState.IsValid)
-			{
-				User user = unitOfWork.UserRepository.Filter(model.Username);
+            User user = unitOfWork.UserRepository.Filter(model.Username);
+            if (ModelState.IsValid)
+			{		
 				if(user != null)
 				{
-					if(stringHashService.ValidateHashedString(model.Password, user.Password, user.Salt))
-					{
-						FormsAuthentication.SetAuthCookie(model.Username, model.RememberMe);
-                        HttpContext.Response.StatusCode = (int)HttpStatusCode.OK;
-                        return new JsonResult() { Data = "Redirecting..." };
-					}
+                    if (user.IsVerified)
+                    {
+                        if (stringHashService.ValidateHashedString(model.Password, user.Password, user.Salt))
+                        {
+                            FormsAuthentication.SetAuthCookie(model.Username, model.RememberMe);
+                            return new JsonResult() { Data = "Redirecting..." };
+                        }
+                    }
+                    else
+                    {
+                        HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                        return new JsonResult() { Data = "Verify your account" };
+                    }
 				}
 			}
-			HttpContext.Response.StatusCode = (int)HttpStatusCode.Forbidden;
-			ModelState.AddModelError("Username", "Invalid credentials");
-			var errors = from field in ModelState.Keys
-						 where ModelState[field].Errors.Count > 0
-						 select new
-						 {
-							 key = field,
-							 errors = ModelState[field].Errors
-											.Select(f => f.ErrorMessage)
-											.ToArray()
-						 };
+            HttpContext.Response.StatusCode = (int)HttpStatusCode.Forbidden;
+            ModelState.AddModelError("Username", "Invalid credentials");
+            var errors = from field in ModelState.Keys
+                         where ModelState[field].Errors.Count > 0
+                         select new
+                         {
+                             key = field,
+                             errors = ModelState[field].Errors
+                                            .Select(f => f.ErrorMessage)
+                                            .ToArray()
+                         };
 
-			return new JsonResult() { Data = errors };
-		}
+            return new JsonResult() { Data = errors };
+
+        }
 
 		[Authorize]
 		public ActionResult LogOut()

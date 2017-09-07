@@ -24,18 +24,21 @@ function loginOrRegister(form, url, redirectUrl, prefix) {
             setTimeout(function () {
                 window.location.replace(redirectUrl);
             }, 2000)
-            
         },
         error: function (xhr) {
             errorFields.empty();
             var jsonErrorBundle = $.parseJSON(xhr.responseText);
-            for (var i = 0; i < jsonErrorBundle.length; i++) {
-                var field = jsonErrorBundle[i];
-                var error = field.errors[0];
-                $("span[data-valmsg-for=" + field.key + "]", form).toggleClass("field-validation-valid field-validation-error")
-                    .append('<span for="' + field.key + '" class="error'+prefix+'">' + error + '</span>');
-                $("input[name=" + field.key + "]").addClass("input-validation-error");
-            }
+            if (typeof jsonErrorBundle === 'string' || jsonErrorBundle instanceof String) {
+                return; // crutch
+            } else {
+                for (var i = 0; i < jsonErrorBundle.length; i++) {
+                    var field = jsonErrorBundle[i];
+                    var error = field.errors[0];
+                    $("span[data-valmsg-for=" + field.key + "]", form).toggleClass("field-validation-valid field-validation-error")
+                        .append('<span for="' + field.key + '" class="error' + prefix + '">' + error + '</span>');
+                    $("input[name=" + field.key + "]").addClass("input-validation-error");
+                }
+            }   
         }
     });
 }
