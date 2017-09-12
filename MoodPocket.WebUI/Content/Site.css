@@ -19,7 +19,11 @@ body {
     top: -20px;
     right: 20px;
 }
-
+.meme-download-btn {
+    position: absolute;
+    top: -20px;
+    right: 50px;
+}
 @keyframes pulse {
     0% {
      transform: scale(1, 1);
@@ -33,10 +37,18 @@ body {
     transform: scale(1, 1);
     }
 }
-
+.meme-download-btn:hover {
+    animation: pulse 1s linear infinite;
+    position: absolute;
+    top: -20px;
+    right: 50px;
+}
 .meme-save-btn:hover {
     animation: pulse 1s linear infinite;
     position: absolute;
     top: -20px;
     right: 20px;
+}
+.disableClick {
+    pointer-events: none;
 }

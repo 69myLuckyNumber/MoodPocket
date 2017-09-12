@@ -179,11 +179,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\NinjectConrollerFactory.cs" />
+    <Compile Include="Models\FileModel.cs" />
     <Compile Include="Models\GalleryViewModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Utilities\Abstract\IEmailSender.cs" />
     <Compile Include="Utilities\Abstract\IStringHasher.cs" />
-    <Compile Include="Utilities\Concrete\EmailSenderService.cs" />
+    <Compile Include="Utilities\Concrete\EmailService.cs" />
     <Compile Include="Utilities\Concrete\StringHashService.cs" />
     <Compile Include="Utilities\Concrete\UnitOfWork.cs" />
     <Compile Include="Models\AccountModel.cs" />

@@ -16,6 +16,7 @@ using System;
 using System.Net;
 using MoodPocket.WebUI.Filters;
 using MoodPocket.WebUI.Utilities.Abstract;
+using System.IO;
 
 namespace MoodPocket.WebUI.Controllers
 {
@@ -81,13 +82,11 @@ namespace MoodPocket.WebUI.Controllers
 			catch (InvalidOperationException)
 			{
 				HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-				return new JsonResult{ Data = "Already saved" };
+				return new JsonResult() { Data = "Already saved" };
 			}
 
 			return new JsonResult() { Data = "Saved" };
 		}
-
-
 
 		public MemeController(IUnitOfWork uow, ICacheService cacheServ)
 		{

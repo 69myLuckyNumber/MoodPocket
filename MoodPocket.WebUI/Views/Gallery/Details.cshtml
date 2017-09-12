@@ -1,6 +1,6 @@
 ﻿@model MoodPocket.WebUI.Models.GalleryViewModel
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Gallery";
 }
 <div class="row">
     @foreach (var picture in Model.Pictures)
@@ -15,7 +15,7 @@
     <script>
         $(document).ready(function () {
             initGalleryScripts("@Url.Action("DeleteMeme","Gallery")");
-            initMemeScripts("@User.Identity.Name","@Url.Action("ShowMemes", "Meme")", "@Url.Action("SaveMeme","Meme")");
+            initMemeScripts("@User.Identity.Name","@Url.Action("ShowMemes", "Meme")", "@Url.Action("SaveMeme","Meme")","@Url.Action("DownloadMeme","Meme")");
         });
     </script>
 }

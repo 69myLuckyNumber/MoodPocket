@@ -31,7 +31,7 @@ namespace MoodPocket.WebUI.Infrastructure
 			ninjectKernel.Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
 			ninjectKernel.Bind<ICacheService>().To<CacheService>();
             ninjectKernel.Bind<IStringHasher>().To<StringHashService>();
-            ninjectKernel.Bind<IEmailSender>().To<EmailSenderService>();
+            ninjectKernel.Bind<IEmailSender>().To<EmailService>();
 		}
 	}
 }

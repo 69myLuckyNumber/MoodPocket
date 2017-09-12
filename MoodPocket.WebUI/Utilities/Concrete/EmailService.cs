@@ -10,13 +10,13 @@ using System.Web.Mvc;
 
 namespace MoodPocket.WebUI.Utilities.Concrete
 {
-    public class EmailSenderService : IEmailSender
+    public class EmailService : IEmailSender
     {
         public string CoreEmail { get; private set; }
 
-        private IStringHasher stringHashService { get; set; }
+        private IStringHasher stringHashService;
 
-        public EmailSenderService()
+        public EmailService()
         {
             CoreEmail = ConfigurationManager.AppSettings["CoreEmail"];
             stringHashService = new StringHashService();
