@@ -1,4 +1,4 @@
-﻿function initMemeScripts(currentUserName, showMemesUrl, saveMemeUrl, downloadMemeUrl) {
+﻿function initMemeScripts(showMemesUrl, saveMemeUrl, downloadMemeUrl) {
     var memeUrl;
     $("#show-meme").on('click', function (e) {
         $("#show-meme").hide();
@@ -14,7 +14,8 @@
     $(document).on('click', '.save-meme',function (e) {
         e.preventDefault();
         memeUrl = $(this).next('#meme-url').val();
-        saveMeme(currentUserName,saveMemeUrl, memeUrl);
+        var memeCard = $(this).closest("#meme-card");
+        saveMeme(saveMemeUrl, memeUrl, memeCard);
     });
 
     $(document).on('click', '.download-meme', function (e) {
@@ -44,9 +45,8 @@ function downloadMeme(url) {
     xhr.open('GET', url); // open the connection with address: url
     xhr.send(); // send empty request
 }
-function saveMeme(currentUserName, postUrl, imageUrl) {
+function saveMeme(postUrl, imageUrl, memeCard) {
     var meme = {
-        HostedBy: currentUserName,
         Url: imageUrl
     };
 
@@ -56,7 +56,13 @@ function saveMeme(currentUserName, postUrl, imageUrl) {
         contentType: "application/json",
         data: JSON.stringify({ picture: meme }),
         success: function (response) {
+            var savebtn = memeCard.find('a.save-meme');
+            var deletebtn = '<a class="btn-floating halfway-fab waves-effect waves-light blue-grey lighten-4 meme-save-btn tooltipped delete-meme" data-position="left" data-delay="50" data-tooltip="Undo">' +
+                '<i class="material-icons" style="color: #666;">delete</i></a>';
+            savebtn.trigger('mouseleave');
+            savebtn.replaceWith(deletebtn);
 
+            materializeJsInit();
             Materialize.toast(response, 3000);
         }
     });
@@ -78,7 +84,7 @@ function showMemes(url) {
                     '<i class="material-icons" style="color: #666;">save</i>'+
                     '</a >'+
                     '<a class="btn-floating halfway-fab waves-effect waves-light blue-grey lighten-4 meme-save-btn tooltipped save-meme" data-position="left" data-delay="50" data-tooltip="Save" type="submit">' +
-                    '<i class="material-icons " style="color: #666;">sentiment_very_satisfied</i>' +
+                    '<i class="material-icons " style="color: #666;">plus_one</i>' +
                     '</a>' +
                     '<input type="hidden" value="' + item.Link + '" id="meme-url"/>' +
 
@@ -97,5 +103,6 @@ function showMemes(url) {
 
 function materializeJsInit() {
     $('.materialboxed').materialbox();
+    $('.tooltipped').tooltip('remove');
     $('.tooltipped').tooltip({ delay: 50 });
 }

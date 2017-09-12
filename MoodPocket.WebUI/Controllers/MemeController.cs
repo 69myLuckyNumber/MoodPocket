@@ -30,6 +30,7 @@ namespace MoodPocket.WebUI.Controllers
 
 		private ICacheService cacheService;
 
+        [Route("memes")]
         public ActionResult Index()
         {
             return View();

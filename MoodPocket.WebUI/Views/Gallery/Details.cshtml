@@ -15,7 +15,7 @@
     <script>
         $(document).ready(function () {
             initGalleryScripts("@Url.Action("DeleteMeme","Gallery")");
-            initMemeScripts("@User.Identity.Name","@Url.Action("ShowMemes", "Meme")", "@Url.Action("SaveMeme","Meme")","@Url.Action("DownloadMeme","Meme")");
+            initMemeScripts("@Url.Action("ShowMemes", "Meme")", "@Url.Action("SaveMeme","Meme")","@Url.Action("DownloadMeme","Meme")");
         });
     </script>
 }

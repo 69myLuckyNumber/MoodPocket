@@ -11,6 +11,6 @@ namespace MoodPocket.Domain.Abstract
 
 		Gallery GetOrCreate(User user);
 
-		void DeletePicture(string url);
+		void DeletePicture(string url, string username);
 	}
 }

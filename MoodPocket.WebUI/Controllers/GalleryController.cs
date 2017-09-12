@@ -14,11 +14,9 @@ namespace MoodPocket.WebUI.Controllers
     public class GalleryController : Controller
     {
 		private IUnitOfWork unitOfWork;
-		
 		public GalleryController(IUnitOfWork uow)
 		{
 			unitOfWork = uow;
-			
 		}
         [HttpGet]
 		[Route("gallery/{username}")]
@@ -43,25 +41,17 @@ namespace MoodPocket.WebUI.Controllers
         [Route("Gallery/DeleteMeme")]
 		public ActionResult DeleteMeme(PictureModel picture)
 		{
-			if(picture.HostedBy == HttpContext.User.Identity.Name)
+			try
 			{
-				try
-				{
-					unitOfWork.GalleryRepository.DeletePicture(picture.Url);
-					unitOfWork.Commit();
-				}
-				catch (InvalidOperationException)
-				{
-					HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-					return new JsonResult { Data = "Already deleted" };
-				}
-				return new JsonResult { Data = "Deleted" };
-            }
-            else
-            {
-                HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                return new JsonResult { Data = "Wrong access" };
-            }
+				unitOfWork.GalleryRepository.DeletePicture(picture.Url, HttpContext.User.Identity.Name);
+				unitOfWork.Commit();
+			}
+			catch (InvalidOperationException)
+			{
+				HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+				return new JsonResult { Data = "Already deleted" };
+			}
+			return new JsonResult { Data = "Deleted" };
 		}
     }
 }

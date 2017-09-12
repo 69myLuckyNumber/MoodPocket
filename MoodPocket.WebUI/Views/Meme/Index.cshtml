@@ -22,9 +22,11 @@
 
 @section scripts{
     @Scripts.Render("~/bundles/meme-scripts")
+    @Scripts.Render("~/bundles/gallery-scripts")
     <script>
         $(document).ready(function () {
-            initMemeScripts("@User.Identity.Name","@Url.Action("ShowMemes", "Meme")", "@Url.Action("SaveMeme","Meme")");
+            initMemeScripts("@Url.Action("ShowMemes", "Meme")", "@Url.Action("SaveMeme","Meme")");
+            initGalleryScripts("@Url.Action("DeleteMeme", "Gallery")");
         });
 
     </script>

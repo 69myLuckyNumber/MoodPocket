@@ -3,18 +3,14 @@
         e.preventDefault();
         var memeUrl = $(this).next('#meme-url').val();
         var memeCard = $(this).closest("#meme-card");
-        var pathName = window.location.pathname;
-        var parts = pathName.split('/');
-        var hostUserName = parts[parts.length - 1];
-
-        deleteMeme(hostUserName, deleteUrl, memeUrl, memeCard);
+ 
+        deleteMeme(deleteUrl, memeUrl, memeCard);
     });
     
 }
 
-function deleteMeme(hostUserName, postUrl, memeUrl, memeCard) {
+function deleteMeme(postUrl, memeUrl, memeCard) {
     var meme = {
-        HostedBy: hostUserName,
         Url: memeUrl
     };
     $.ajax({
@@ -23,7 +19,14 @@ function deleteMeme(hostUserName, postUrl, memeUrl, memeCard) {
         contentType: "application/json",
         data: JSON.stringify({ picture: meme }),
         success: function (response) {
-            memeCard.hide();
+            var deletebtn = memeCard.find("a.delete-meme");
+            var savebtn = '<a class="btn-floating halfway-fab waves-effect waves-light blue-grey lighten-4 meme-save-btn tooltipped save-meme" data-position="left" data-delay="50" data-tooltip="Undo">' +
+                '<i class="material-icons " style="color: #666;">plus_one</i></a>';
+
+            deletebtn.trigger('mouseleave');
+            deletebtn.replaceWith(savebtn);
+            
+            materializeJsInit();
             Materialize.toast(response, 3000);
         }
     });
