@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace MoodPocket.Domain.Abstract
 {
-	public interface IGalleryPictureRepository
+	public interface IGalleryMemesRepository
 	{
-		IQueryable<GalleryPicture> GalleryPictures { get; }
+		IQueryable<GalleryMeme> GalleryMemes { get; }
 
-		void Create(Gallery gallery, Picture picture);
+		void Create(Gallery gallery, Meme meme);
 
 	}
 }

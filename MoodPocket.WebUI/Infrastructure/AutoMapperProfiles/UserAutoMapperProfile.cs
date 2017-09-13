@@ -21,9 +21,9 @@ namespace MoodPocket.WebUI.Infrastructure.AutoMapperProfiles
                 .ForMember( dest => dest.User, opts => opts.MapFrom(src => src))
                 .ForMember( dest => dest.Gallery, opts => opts.MapFrom(src => src.Gallery))
                 .ForMember( dest => dest.SavedMemesCount, 
-                            opts => opts.MapFrom(src => src.Gallery.GalleryPictures.Count))
-                .ForMember( dest => dest.BackgroundPictureUrl, 
-                            opts => opts.MapFrom(src => src.Gallery.GalleryPictures.First().Picture.Url));
+                            opts => opts.MapFrom(src => src.Gallery.GalleryMemes.Count))
+                .ForMember( dest => dest.BackgroundMemeUrl, 
+                            opts => opts.MapFrom(src => src.Gallery.GalleryMemes.First().Meme.Url));
         }
     }
 }

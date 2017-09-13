@@ -3,9 +3,9 @@
     ViewBag.Title = "Gallery";
 }
 <div class="row">
-    @foreach (var picture in Model.Pictures)
+    @foreach (var meme in Model.Memes)
     {
-        @Html.Partial("_PictureView", picture, new ViewDataDictionary { { "HostedBy", Model.HostedBy } })
+        @Html.Partial("_MemeView", meme, new ViewDataDictionary { { "HostedBy", Model.HostedBy } })
     }
 </div>
 

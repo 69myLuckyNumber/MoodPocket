@@ -7,10 +7,10 @@ namespace MoodPocket.Domain.Abstract
 	{
 		IQueryable<Gallery> Galleries { get; }
 
-		IQueryable<Picture> GetAllPictures(int userId);
+		IQueryable<Meme> GetAllMemes(int userId);
 
 		Gallery GetOrCreate(User user);
 
-		void DeletePicture(string url, string username);
+		void DeleteMeme(string url, string username);
 	}
 }

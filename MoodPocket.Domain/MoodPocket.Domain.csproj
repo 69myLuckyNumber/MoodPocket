@@ -50,23 +50,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IGalleryPictureRepository.cs" />
+    <Compile Include="Abstract\IGalleryMemesRepository.cs" />
     <Compile Include="Abstract\IGalleryRepository.cs" />
     <Compile Include="Abstract\IGetsCurrentUser.cs" />
-    <Compile Include="Abstract\IPictureRepository.cs" />
+    <Compile Include="Abstract\IMemeRepository.cs" />
     <Compile Include="Abstract\IUserRepository.cs" />
-    <Compile Include="Concrete\GalleryPictureRepository.cs" />
+    <Compile Include="Concrete\GalleryMemeRepository.cs" />
     <Compile Include="Concrete\GalleryRepository.cs" />
-    <Compile Include="Concrete\PictureRepository.cs" />
+    <Compile Include="Concrete\MemeRepository.cs" />
     <Compile Include="Concrete\UserRepository.cs" />
     <Compile Include="Context\DatabaseContext.cs" />
-    <Compile Include="Entities\GalleryPicture.cs" />
-    <Compile Include="Entities\Picture.cs" />
+    <Compile Include="Entities\GalleryMeme.cs" />
+    <Compile Include="Entities\Meme.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\Gallery.cs" />
-    <Compile Include="Migrations\201708171604079_Initial.cs" />
-    <Compile Include="Migrations\201708171604079_Initial.Designer.cs">
-      <DependentUpon>201708171604079_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201709131831412_GlobalRefactoringAkaInitial.cs" />
+    <Compile Include="Migrations\201709131831412_GlobalRefactoringAkaInitial.Designer.cs">
+      <DependentUpon>201709131831412_GlobalRefactoringAkaInitial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -76,8 +76,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201708171604079_Initial.resx">
-      <DependentUpon>201708171604079_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201709131831412_GlobalRefactoringAkaInitial.resx">
+      <DependentUpon>201709131831412_GlobalRefactoringAkaInitial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

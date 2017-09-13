@@ -54,7 +54,7 @@ function saveMeme(postUrl, imageUrl, memeCard) {
         url: postUrl,
         type: 'POST',
         contentType: "application/json",
-        data: JSON.stringify({ picture: meme }),
+        data: JSON.stringify({ meme: meme }),
         success: function (response) {
             var savebtn = memeCard.find('a.save-meme');
             var deletebtn = '<a class="btn-floating halfway-fab waves-effect waves-light blue-grey lighten-4 meme-save-btn tooltipped delete-meme" data-position="left" data-delay="50" data-tooltip="Undo">' +

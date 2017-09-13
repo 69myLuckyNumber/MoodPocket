@@ -21,15 +21,15 @@ namespace MoodPocket.Domain.Concrete
 			get { return _context.Galleries; }
 		}
 
-		public IQueryable<Picture> GetAllPictures(int userId)
+		public IQueryable<Meme> GetAllMemes(int userId)
 		{
-			return _context.GalleryPictures.Where(g => g.Gallery.Id == userId).Select(p => p.Picture) 
-				as IQueryable<Picture>;
+			return _context.GalleryMemes.Where(g => g.Gallery.Id == userId).Select(p => p.Meme) 
+				as IQueryable<Meme>;
 		}
 
-		public void DeletePicture(string url, string username)
+		public void DeleteMeme(string url, string username)
 		{
-			GalleryPicture gp = _context.GalleryPictures.Where(p => p.Picture.Url == url && p.Gallery.User.Username == username)
+			GalleryMeme gp = _context.GalleryMemes.Where(p => p.Meme.Url == url && p.Gallery.User.Username == username)
                                                         .FirstOrDefault();
 			if (gp == null)
 			{
@@ -37,7 +37,7 @@ namespace MoodPocket.Domain.Concrete
 			}
 			else
 			{
-				_context.GalleryPictures.Remove(gp);
+				_context.GalleryMemes.Remove(gp);
 			}
 			
 		}
@@ -48,7 +48,7 @@ namespace MoodPocket.Domain.Concrete
 			{
 				Gallery gallery = new Gallery()
 				{
-					GalleryPictures = new List<GalleryPicture>(),
+					GalleryMemes = new List<GalleryMeme>(),
 					User = user,
 					Id = user.Id,
 					Name = "My Gallery"

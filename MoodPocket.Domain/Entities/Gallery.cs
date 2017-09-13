@@ -13,7 +13,7 @@ namespace MoodPocket.Domain.Entities
 
 		public string Name { get; set; }
 
-		public virtual ICollection<GalleryPicture> GalleryPictures { get; set; }
+		public virtual ICollection<GalleryMeme> GalleryMemes { get; set; }
 	}
 
 }

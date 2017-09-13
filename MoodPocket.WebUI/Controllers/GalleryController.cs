@@ -24,7 +24,7 @@ namespace MoodPocket.WebUI.Controllers
         public ActionResult Details(string username)
         {
 			User user = unitOfWork.UserRepository.Filter(username);
-            IQueryable<Picture> userPictures = unitOfWork.GalleryRepository.GetAllPictures(user.Id);
+            IQueryable<Meme> userMemes = unitOfWork.GalleryRepository.GetAllMemes(user.Id);
 
             if (user == null)
             {
@@ -34,7 +34,7 @@ namespace MoodPocket.WebUI.Controllers
 
             GalleryViewModel model = new GalleryViewModel()
             {
-                Pictures = Mapper.Map<IEnumerable<PictureModel>>(userPictures),
+                Memes = Mapper.Map<IEnumerable<MemeModel>>(userMemes),
                 HostedBy = username
             }; 
             return View(model);
@@ -43,11 +43,11 @@ namespace MoodPocket.WebUI.Controllers
 		[HttpPost]
 		[AjaxAuthorize]
         [Route("Gallery/DeleteMeme")]
-		public ActionResult DeleteMeme(PictureModel picture)
+		public ActionResult DeleteMeme(MemeModel picture)
 		{
 			try
 			{
-				unitOfWork.GalleryRepository.DeletePicture(picture.Url, HttpContext.User.Identity.Name);
+				unitOfWork.GalleryRepository.DeleteMeme(picture.Url, HttpContext.User.Identity.Name);
 				unitOfWork.Commit();
 			}
 			catch (InvalidOperationException)

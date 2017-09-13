@@ -73,7 +73,7 @@ namespace MoodPocket.Domain.Concrete
 
         public IQueryable<User> GetAllUsersWithMemes()
         {
-            return _context.Users.Where(u => u.Gallery.GalleryPictures.Count > 0);
+            return _context.Users.Where(u => u.Gallery.GalleryMemes.Count > 0);
         }
     }
 }

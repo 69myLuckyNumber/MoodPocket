@@ -5,7 +5,7 @@ using System.Web;
 
 namespace MoodPocket.WebUI.Models
 {
-	public class PictureModel
+	public class MemeModel
 	{
 		public string Url { get; set; }
 	}

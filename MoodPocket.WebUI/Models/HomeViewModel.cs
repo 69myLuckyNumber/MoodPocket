@@ -17,7 +17,7 @@ namespace MoodPocket.WebUI.Models
 
         public Gallery Gallery { get; set; }
 
-        public string BackgroundPictureUrl { get; set; }
+        public string BackgroundMemeUrl { get; set; }
 
         public int SavedMemesCount { get; set; }
     }

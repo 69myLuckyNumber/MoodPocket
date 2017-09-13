@@ -11,18 +11,18 @@ namespace MoodPocket.WebUI.Utilities.Concrete
 
 		public UnitOfWork()
 		{
-			GalleryPictureRepository =	new GalleryPictureRepository(_context);
-			PictureRepository =			new PictureRepository(_context);
+			GalleryMemesRepository =	new GalleryMemeRepository(_context);
+			MemeRepository =			new MemeRepository(_context);
 			GalleryRepository =			new GalleryRepository(_context);
 			UserRepository =			new UserRepository(_context);
 			CurrentUserGetter =			new UserRepository(_context);
 		}
 
-		public IGalleryPictureRepository	GalleryPictureRepository { get; private set; }
-		public IPictureRepository			PictureRepository { get; private set; }
-		public IGalleryRepository			GalleryRepository { get; private set; }
-		public IUserRepository				UserRepository { get; private set; }
-		public IGetsCurrentUser				CurrentUserGetter { get; private set; }
+		public IGalleryMemesRepository	GalleryMemesRepository { get; private set; }
+		public IMemeRepository			MemeRepository { get; private set; }
+		public IGalleryRepository		GalleryRepository { get; private set; }
+		public IUserRepository			UserRepository { get; private set; }
+		public IGetsCurrentUser			CurrentUserGetter { get; private set; }
 	
 		public void Commit()
 		{

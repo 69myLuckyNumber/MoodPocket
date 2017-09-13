@@ -12,7 +12,7 @@ namespace MoodPocket.WebUI.Infrastructure.AutoMapperProfiles
     {
         public MemeAutoMapperProfile()
         {
-            CreateMap<Picture, PictureModel>()
+            CreateMap<Meme, MemeModel>()
                 .ForMember(dest => dest.Url, opts => opts.MapFrom(src => src.Url));
         }
     }

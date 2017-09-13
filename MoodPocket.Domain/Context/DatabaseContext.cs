@@ -12,9 +12,9 @@ namespace MoodPocket.Domain.Context
 
 		public DbSet<Gallery> Galleries { get; set; }
 
-		public DbSet<Picture> Pictures { get; set; }
+		public DbSet<Meme> Memes { get; set; }
 
-		public DbSet<GalleryPicture> GalleryPictures { get; set; }
+		public DbSet<GalleryMeme> GalleryMemes { get; set; }
 
 	}
 }

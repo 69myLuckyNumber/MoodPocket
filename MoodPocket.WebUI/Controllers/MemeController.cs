@@ -69,15 +69,15 @@ namespace MoodPocket.WebUI.Controllers
 		
 		[HttpPost]
 		[AjaxAuthorize]
-		public ActionResult SaveMeme(PictureModel picture)
+		public ActionResult SaveMeme(MemeModel meme)
 		{
 			try
 			{
 				User currentUser = unitOfWork.CurrentUserGetter.GetCurrentUser(HttpContext.User.Identity.Name);
 				Gallery galleryDb = unitOfWork.GalleryRepository.GetOrCreate(currentUser);
-				Picture pictureDb = unitOfWork.PictureRepository.GetOrCreate(picture.Url);
+				Meme memeDb = unitOfWork.MemeRepository.GetOrCreate(meme.Url);
 
-				unitOfWork.GalleryPictureRepository.Create(galleryDb, pictureDb);
+				unitOfWork.GalleryMemesRepository.Create(galleryDb, memeDb);
 				unitOfWork.Commit();
 			}
 			catch (InvalidOperationException)

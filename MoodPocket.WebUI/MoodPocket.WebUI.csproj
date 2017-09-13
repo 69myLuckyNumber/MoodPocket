@@ -193,7 +193,7 @@
     <Compile Include="Utilities\Concrete\StringHashService.cs" />
     <Compile Include="Utilities\Concrete\UnitOfWork.cs" />
     <Compile Include="Models\AccountModel.cs" />
-    <Compile Include="Models\PictureModel.cs" />
+    <Compile Include="Models\MemeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\Abstract\ICacheService.cs" />
     <Compile Include="Utilities\Abstract\IUnitOfWork.cs" />
@@ -294,7 +294,7 @@
     <Content Include="Views\Account\_LoginFormView.cshtml" />
     <Content Include="Views\Meme\Index.cshtml" />
     <Content Include="Views\Gallery\Details.cshtml" />
-    <Content Include="Views\Gallery\_PictureView.cshtml" />
+    <Content Include="Views\Gallery\_MemeView.cshtml" />
     <Content Include="Views\Account\VerifyAccount.cshtml" />
     <Content Include="Views\Home\_UserCardView.cshtml" />
   </ItemGroup>
