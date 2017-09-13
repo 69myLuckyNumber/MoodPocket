@@ -8,7 +8,7 @@ namespace MoodPocket.WebUI.Models
 {
     public class GalleryViewModel
     {
-        public IEnumerable<Picture> Pictures { get; set; }
+        public IEnumerable<PictureModel> Pictures { get; set; }
 
         public string HostedBy { get; set; }
 

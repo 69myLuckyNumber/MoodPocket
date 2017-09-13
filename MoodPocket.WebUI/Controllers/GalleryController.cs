@@ -1,4 +1,5 @@
-﻿using MoodPocket.Domain.Abstract;
+﻿using AutoMapper;
+using MoodPocket.Domain.Abstract;
 using MoodPocket.Domain.Entities;
 using MoodPocket.WebUI.Filters;
 using MoodPocket.WebUI.Models;
@@ -23,14 +24,17 @@ namespace MoodPocket.WebUI.Controllers
         public ActionResult Details(string username)
         {
 			User user = unitOfWork.UserRepository.Filter(username);
-            if(user == null)
+            IQueryable<Picture> userPictures = unitOfWork.GalleryRepository.GetAllPictures(user.Id);
+
+            if (user == null)
             {
                 HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return View("Error");
             }
+
             GalleryViewModel model = new GalleryViewModel()
             {
-                Pictures = unitOfWork.GalleryRepository.GetAllPictures(user.Id),
+                Pictures = Mapper.Map<IEnumerable<PictureModel>>(userPictures),
                 HostedBy = username
             }; 
             return View(model);
