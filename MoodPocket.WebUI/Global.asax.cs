@@ -20,6 +20,7 @@ namespace MoodPocket.WebUI
 			RouteConfig.RegisterRoutes(RouteTable.Routes);
 			BundleConfig.RegisterBundles(BundleTable.Bundles);
 
+            MapperConfig.RegisterMappings();
 			ControllerBuilder.Current.SetControllerFactory(new NinjectConrollerFactory());
 			ImgurClientConfig.Init();
 		}
