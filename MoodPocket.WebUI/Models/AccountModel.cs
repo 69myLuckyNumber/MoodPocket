@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MoodPocket.Domain.Entities;
+using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
 namespace MoodPocket.WebUI.Models
@@ -35,7 +36,13 @@ namespace MoodPocket.WebUI.Models
 		[DataType(DataType.Password)]
 		[Display(Name = "Password again")]
 		public string ConfirmPassword { get; set; }
-	}
+
+        public string Salt { get; set; }
+
+        public bool IsVerified { get; set; }
+
+        public Gallery Gallery { get; set; }
+    }
 
 	public class LoginModel
 	{

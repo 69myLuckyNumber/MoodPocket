@@ -11,6 +11,7 @@ using System.Linq;
 using System.Collections.Generic;
 using MoodPocket.WebUI.Utilities.Abstract;
 using System;
+using AutoMapper;
 
 namespace MoodPocket.WebUI.Controllers
 {
@@ -47,21 +48,17 @@ namespace MoodPocket.WebUI.Controllers
 		{
 			if (ModelState.IsValid)
 			{
+                string salt = stringHashService.GetRandomSalt();
+                string hashedPassword = stringHashService.HashString(account.Password, salt);
                 try
                 {
-                    string salt = stringHashService.GetRandomSalt();
-                    string hashedPassword = stringHashService.HashString(account.Password, salt);
-                    unitOfWork.UserRepository.CreateUser(new User()
-                    {
-                        Username = account.Username,
-                        Salt = salt,
-                        Password = hashedPassword,
-                        ConfirmPassword = hashedPassword,
-                        Email = account.Email,
-                        IsVerified = false,
-                        Gallery = null
-                    });
+                    account.Salt = salt;
+                    account.Password = account.ConfirmPassword = hashedPassword;
+                    var newUser = Mapper.Map<User>(account);
+
+                    unitOfWork.UserRepository.CreateUser(newUser);
                     unitOfWork.Commit();
+
                     emailSendService.SendVerificationLink(account.Username, account.Email);
                     return new JsonResult() { Data = "Confirmation email has been sent" };
                 }

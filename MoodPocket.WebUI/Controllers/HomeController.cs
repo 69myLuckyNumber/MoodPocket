@@ -1,4 +1,5 @@
-﻿using MoodPocket.Domain.Abstract;
+﻿using AutoMapper;
+using MoodPocket.Domain.Abstract;
 using MoodPocket.WebUI.Models;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,13 +24,7 @@ namespace MoodPocket.WebUI.Controllers
             var users = unitOfWork.UserRepository.GetAllUsersWithMemes().ToList();
             foreach(var user in users)
             {
-                userCard.Add(new UserCard()
-                {
-                    User = user,
-                    Gallery = user.Gallery,
-                    SavedMemesCount = user.Gallery.GalleryPictures.Count,
-                    BackgroundPictureUrl = user.Gallery.GalleryPictures.First().Picture.Url
-                });
+                userCard.Add(Mapper.Map<UserCard>(user));
             }
             HomeViewModel model = new HomeViewModel()
             {

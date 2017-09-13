@@ -14,7 +14,8 @@ namespace MoodPocket.WebUI.App_Start
             Mapper.Initialize(
                 cfg =>
                 {
-                    cfg.AddProfile<AccountAutoMapperProfile>();
+                    cfg.AddProfile<UserAutoMapperProfile>();
+                    
                 }
             );
         }
