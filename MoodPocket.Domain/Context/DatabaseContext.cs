@@ -7,6 +7,10 @@ namespace MoodPocket.Domain.Context
 {
 	public class DatabaseContext : DbContext
 	{
+        public DatabaseContext() : base("DatabaseContext")
+        {
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<DatabaseContext>());
+        }
 
 		public DbSet<User> Users { get; set; }
 

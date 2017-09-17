@@ -8,7 +8,7 @@
         @Html.ValidationMessageFor(model => model.Username, "", new { @style = "color: #ef9a9a" })
     </div>
     <div class="input-field">
-        @Html.TextBoxFor(model => model.Password, new { @class = "form-control", @placeholder = "Password" })
+        @Html.PasswordFor(model => model.Password, new { @class = "form-control", @placeholder = "Password" })
         @Html.ValidationMessageFor(model => model.Password, "", new { @style = "color: #ef9a9a" })
     </div>
     <div class="input-field">

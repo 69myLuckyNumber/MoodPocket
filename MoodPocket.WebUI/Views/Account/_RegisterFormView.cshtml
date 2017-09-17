@@ -12,11 +12,11 @@
         @Html.ValidationMessageFor(model => model.Email, "", new { @style = "color: #ef9a9a" })
     </div>
     <div class="input-field">
-        @Html.TextBoxFor(model => model.Password, new { @class = "form-control", @placeholder = "Password"})
+        @Html.PasswordFor(model => model.Password, new { @class = "form-control", @placeholder = "Password"})
         @Html.ValidationMessageFor(model => model.Password, "", new { @style = "color: #ef9a9a" })
     </div>
     <div class="input-field">
-        @Html.TextBoxFor(model => model.ConfirmPassword, new { @class = "form-control", @placeholder = "Password again"})
+        @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control", @placeholder = "Password again"})
         @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @style = "color: #ef9a9a" })
     </div>
     <div class="input-fiel">

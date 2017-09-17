@@ -24,14 +24,13 @@ namespace MoodPocket.WebUI.Controllers
         public ActionResult Details(string username)
         {
 			User user = unitOfWork.UserRepository.Filter(username);
-            IQueryable<Meme> userMemes = unitOfWork.GalleryRepository.GetAllMemes(user.Id);
 
             if (user == null)
             {
                 HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return View("Error");
             }
-
+            IQueryable<Meme> userMemes = unitOfWork.GalleryRepository.GetAllMemes(user.Id);
             GalleryViewModel model = new GalleryViewModel()
             {
                 Memes = Mapper.Map<IEnumerable<MemeModel>>(userMemes),

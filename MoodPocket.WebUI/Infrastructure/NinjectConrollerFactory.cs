@@ -23,7 +23,11 @@ namespace MoodPocket.WebUI.Infrastructure
 
 		protected override IController GetControllerInstance(RequestContext requestContext, Type controllerType)
 		{
-			return controllerType == null ? null : ninjectKernel.Get(controllerType) as IController;
+            if(controllerType == null)
+            {
+                return base.GetControllerInstance(requestContext, controllerType);
+            }
+			return ninjectKernel.Get(controllerType) as IController;
 		}
 
 		private void AddBindings()
