@@ -21,8 +21,8 @@ namespace MoodPocket.WebUI.Controllers
 		{
 
             List<UserCard> userCard = new List<UserCard>();
-            var users = unitOfWork.UserRepository.GetAllUsersWithMemes().ToList();
-            foreach(var user in users)
+			var users = unitOfWork.UserRepository.Query(u => u.Gallery.GalleryMemes.Count > 0);
+            foreach (var user in users)
             {
                 userCard.Add(Mapper.Map<UserCard>(user));
             }

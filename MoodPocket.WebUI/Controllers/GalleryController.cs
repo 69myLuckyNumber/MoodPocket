@@ -23,14 +23,18 @@ namespace MoodPocket.WebUI.Controllers
 		[Route("gallery/{username}")]
         public ActionResult Details(string username)
         {
-			User user = unitOfWork.UserRepository.Filter(username);
+			User user = unitOfWork.UserRepository.Get(u => u.Username == username);
 
             if (user == null)
             {
                 HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return View("Error");
             }
-            IQueryable<Meme> userMemes = unitOfWork.GalleryRepository.GetAllMemes(user.Id);
+
+			IQueryable<Meme> userMemes = unitOfWork.GalleryMemesRepository
+				.Query(g => g.Gallery.Id == user.Id)
+				.Select(g => g.Meme);
+
             GalleryViewModel model = new GalleryViewModel()
             {
                 Memes = Mapper.Map<IEnumerable<MemeModel>>(userMemes),
@@ -44,16 +48,19 @@ namespace MoodPocket.WebUI.Controllers
         [Route("Gallery/DeleteMeme")]
 		public ActionResult DeleteMeme(MemeModel picture)
 		{
-			try
+			var meme = unitOfWork.GalleryMemesRepository
+				.Get(p => p.Meme.Url == picture.Url && p.Gallery.User.Username == HttpContext.User.Identity.Name);
+			if(meme != null)
 			{
-				unitOfWork.GalleryRepository.DeleteMeme(picture.Url, HttpContext.User.Identity.Name);
-				unitOfWork.Commit();
+				unitOfWork.GalleryMemesRepository.Delete(meme);
 			}
-			catch (InvalidOperationException)
+			else
 			{
 				HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
 				return new JsonResult { Data = "Already deleted" };
 			}
+				
+			unitOfWork.Commit();
 			return new JsonResult { Data = "Deleted" };
 		}
     }

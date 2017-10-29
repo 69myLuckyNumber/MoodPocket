@@ -2,28 +2,29 @@
 using MoodPocket.Domain.Concrete;
 using MoodPocket.Domain.Context;
 using System;
+using MoodPocket.Domain.Entities;
+using Ninject;
 
 namespace MoodPocket.WebUI.Utilities.Concrete
 {
 	public class UnitOfWork : IUnitOfWork
 	{
-		private DatabaseContext _context = new DatabaseContext();
+		private DatabaseContext _context;
 
-		public UnitOfWork()
+		public UnitOfWork(DatabaseContext context, IRepository<User> ur, IRepository<Meme> mr,
+			IRepository<GalleryMeme> gmr, IRepository<Gallery> gr)
 		{
-			GalleryMemesRepository =	new GalleryMemeRepository(_context);
-			MemeRepository =			new MemeRepository(_context);
-			GalleryRepository =			new GalleryRepository(_context);
-			UserRepository =			new UserRepository(_context);
-			CurrentUserGetter =			new UserRepository(_context);
+            _context = context;
+			UserRepository = ur;
+			MemeRepository = mr;
+			GalleryMemesRepository = gmr;
+			GalleryRepository = gr;
 		}
+		public IRepository<User> UserRepository { get; private set; }
+		public IRepository<Meme> MemeRepository { get; private set; }
+		public IRepository<GalleryMeme> GalleryMemesRepository { get; private set; }
+		public IRepository<Gallery> GalleryRepository { get; private set; }
 
-		public IGalleryMemesRepository	GalleryMemesRepository { get; private set; }
-		public IMemeRepository			MemeRepository { get; private set; }
-		public IGalleryRepository		GalleryRepository { get; private set; }
-		public IUserRepository			UserRepository { get; private set; }
-		public IGetsCurrentUser			CurrentUserGetter { get; private set; }
-	
 		public void Commit()
 		{
 			_context.SaveChanges();

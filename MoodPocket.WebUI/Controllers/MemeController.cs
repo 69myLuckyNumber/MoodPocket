@@ -7,6 +7,8 @@ using MoodPocket.WebUI.App_Start;
 using MoodPocket.WebUI.Utilities;
 using MoodPocket.WebUI.Models;
 using MoodPocket.Domain.Entities;
+using MoodPocket.WebUI.Filters;
+using MoodPocket.WebUI.Utilities.Abstract;
 
 using System.Web.Mvc;
 using System.Collections.Generic;
@@ -14,9 +16,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System;
 using System.Net;
-using MoodPocket.WebUI.Filters;
-using MoodPocket.WebUI.Utilities.Abstract;
-using System.IO;
+
 
 namespace MoodPocket.WebUI.Controllers
 {
@@ -71,21 +71,45 @@ namespace MoodPocket.WebUI.Controllers
 		[AjaxAuthorize]
 		public ActionResult SaveMeme(MemeModel meme)
 		{
-			try
-			{
-				User currentUser = unitOfWork.CurrentUserGetter.GetCurrentUser(HttpContext.User.Identity.Name);
-				Gallery galleryDb = unitOfWork.GalleryRepository.GetOrCreate(currentUser);
-				Meme memeDb = unitOfWork.MemeRepository.GetOrCreate(meme.Url);
 
-				unitOfWork.GalleryMemesRepository.Create(galleryDb, memeDb);
-				unitOfWork.Commit();
+			var currentUser = unitOfWork.UserRepository.Get(u => u.Username == HttpContext.User.Identity.Name);
+			var gallery = unitOfWork.GalleryRepository.FindById(currentUser.Id);
+			if(gallery == null)
+			{
+				gallery = unitOfWork.GalleryRepository.Add(new Gallery()
+				{
+					Id = currentUser.Id,
+					Name = "Default",
+					User = currentUser,
+					GalleryMemes = new List<GalleryMeme>()
+				});
 			}
-			catch (InvalidOperationException)
+			var mem = unitOfWork.MemeRepository.Get(m => m.Url == meme.Url);
+			if(mem == null)
+			{
+				mem = unitOfWork.MemeRepository.Add(new Meme()
+				{
+					Url = meme.Url,
+					GalleryMemes = new List<GalleryMeme>()
+				});
+			}
+
+			var memGallery = unitOfWork.GalleryMemesRepository
+				.Get(g => g.GalleryID == gallery.Id && g.MemeID == mem.Id);
+			if (memGallery == null)
+			{
+				memGallery = unitOfWork.GalleryMemesRepository.Add(new GalleryMeme()
+				{
+					Gallery = gallery,
+					Meme = mem
+				});
+			}
+			else
 			{
 				HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
 				return new JsonResult() { Data = "Already saved" };
 			}
-
+			unitOfWork.Commit();
 			return new JsonResult() { Data = "Saved" };
 		}
 

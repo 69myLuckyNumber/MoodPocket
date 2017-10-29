@@ -184,7 +184,7 @@
     </Compile>
     <Compile Include="Infrastructure\AutoMapperProfiles\MemeAutoMapperProfile.cs" />
     <Compile Include="Infrastructure\AutoMapperProfiles\UserAutoMapperProfile.cs" />
-    <Compile Include="Infrastructure\NinjectConrollerFactory.cs" />
+    <Compile Include="Infrastructure\Ninject\NinjectDependencyResolver.cs" />
     <Compile Include="Models\GalleryViewModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Utilities\Abstract\IEmailSender.cs" />

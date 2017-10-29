@@ -48,24 +48,30 @@ namespace MoodPocket.WebUI.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-                string salt = stringHashService.GetRandomSalt();
-                string hashedPassword = stringHashService.HashString(account.Password, salt);
-                try
-                {
-                    account.Salt = salt;
-                    account.Password = account.ConfirmPassword = hashedPassword;
-                    var newUser = Mapper.Map<User>(account);
+				var user = unitOfWork.UserRepository
+						.Get(u => u.Username == account.Username && u.Email == account.Email);
+				if(user == null)
+				{
+					string salt = stringHashService.GetRandomSalt();
+					string hashedPassword = stringHashService.HashString(account.Password, salt);
 
-                    unitOfWork.UserRepository.CreateUser(newUser);
-                    unitOfWork.Commit();
+					account.Salt = salt;
+					account.Password = account.ConfirmPassword = hashedPassword;
+					var newUser = Mapper.Map<User>(account);
 
-                    emailSendService.SendVerificationLink(account.Username, account.Email);
-                    return new JsonResult() { Data = "Confirmation email has been sent" };
-                }
-                catch (InvalidOperationException)
-                {
-                    HttpContext.Response.StatusCode = (int)HttpStatusCode.Forbidden;
-                }
+
+
+					unitOfWork.UserRepository.Add(newUser);
+					unitOfWork.Commit();
+
+					emailSendService.SendVerificationLink(account.Username, account.Email);
+					return new JsonResult() { Data = "Confirmation email has been sent" };
+
+				}
+				else
+				{
+					HttpContext.Response.StatusCode = (int)HttpStatusCode.Forbidden;
+				}
 			}
 			return Json(new { status = "error" }, JsonRequestBehavior.AllowGet);
 		}
@@ -73,7 +79,7 @@ namespace MoodPocket.WebUI.Controllers
 		[HttpPost]
 		public JsonResult DoesUserExists(string Username, string Email)
 		{
-			User user = unitOfWork.UserRepository.Filter(Username, Email);
+			User user = unitOfWork.UserRepository.Get(u => u.Username == Username && u.Email == Email);
 			return Json(user == null);
 		}
 
@@ -83,7 +89,7 @@ namespace MoodPocket.WebUI.Controllers
 		[ValidateAntiForgeryToken]
 		public JsonResult Login(LoginModel model)
 		{
-            User user = unitOfWork.UserRepository.Filter(model.Username);
+			User user = unitOfWork.UserRepository.Get(u => u.Username == model.Username);
             if (ModelState.IsValid)
 			{		
 				if(user != null)
@@ -128,8 +134,8 @@ namespace MoodPocket.WebUI.Controllers
         [Route("Account/VerifyAccount/{username}/{salt}/{activationCode}")]
         public ActionResult VerifyAccount(string username, string salt, string activationCode)
         {
-            User user = unitOfWork.UserRepository.Filter(username);
-            if (user != null && !user.IsVerified && stringHashService.ValidateHashedString(username, activationCode, salt))
+			User user = unitOfWork.UserRepository.Get(u => u.Username == username);
+			if (user != null && !user.IsVerified && stringHashService.ValidateHashedString(username, activationCode, salt))
             {
                 user.IsVerified = true;
                 unitOfWork.Commit();

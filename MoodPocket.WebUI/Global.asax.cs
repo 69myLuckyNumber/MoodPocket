@@ -1,8 +1,7 @@
 ﻿using MoodPocket.Domain.Context;
 using MoodPocket.WebUI.App_Start;
 using MoodPocket.WebUI.Infrastructure;
-
-
+using MoodPocket.WebUI.Infrastructure.Ninject;
 using System.Data.Entity;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -19,9 +18,9 @@ namespace MoodPocket.WebUI
 			FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 			RouteConfig.RegisterRoutes(RouteTable.Routes);
 			BundleConfig.RegisterBundles(BundleTable.Bundles);
-
-            MapperConfig.RegisterMappings();
-			ControllerBuilder.Current.SetControllerFactory(new NinjectConrollerFactory());
+			DependencyResolver.SetResolver(new NinjectDependencyResolver());
+			MapperConfig.RegisterMappings();
+			
 			ImgurClientConfig.Init();
 		}
 	}
